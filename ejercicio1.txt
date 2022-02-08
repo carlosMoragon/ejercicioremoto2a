@@ -1,0 +1,1 @@
+Un método recursivo es una función que hace referencia a miembros, anteriores, de la sucesión en la que se encuentra. Un ejemplo seria la sucesión de Fibonacci.
