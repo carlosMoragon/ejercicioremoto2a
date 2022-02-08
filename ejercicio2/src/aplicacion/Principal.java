@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Principal{
 	public static void main(String[] args){
-		String sentencia = "";
+		/*String sentencia = "";
 
 		for(int i = 0; i < args.length; i++){
 			sentencia += args[i] + " ";
@@ -17,8 +17,14 @@ public class Principal{
 		}else{
 			System.out.println("afja");
 		}
-		/*Scanner sc = new Scanner(System.in);
-		String input = sc.next();
+		/*/
+		Scanner sc = new Scanner(System.in);
+
+		String suma = sc.next();
+		String[] numero = suma.split(" ");
+		
+		suma(Integer.parseInt(numero[1]));
+		/*String input = sc.next();
 		if(input.contains("suma")){
 			String[] partes = input.split(" ");
 			suma(Integer.parseInt(partes[1]));
@@ -35,7 +41,7 @@ public class Principal{
 
 	public static void suma(int n){
 		long resultado = 0;
-		for(int i = 0; i < n; i++){
+		for(int i = 0; i <= n; i++){
 			resultado += i;
 		}
 		System.out.println(resultado);
