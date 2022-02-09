@@ -1,6 +1,9 @@
 package aplicacion;
 
 import java.util.Scanner;
+import java.lang.Math;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Principal{
 	public static void main(String[] args){
@@ -8,17 +11,61 @@ public class Principal{
 		boolean repetir = true;
 		while(repetir){
 			System.out.println("-----------------------------");
-			String suma = sc.nextLine();
+			String input = sc.nextLine();
 
-			if(suma.contains("suma")){
-				String[] numero = suma.split(" ");
+			if(input.contains("suma")){
+				String[] numero = input.split(" ");
 				suma(Integer.parseInt(numero[1]));
-			}else if(suma.contains("!")){
-				String[] numero = suma.split("!");
+			}else if(input.contains("!")){
+				String[] numero = input.split("!");
 				factorial(Long.parseLong(numero[0]));
-			}else if(suma.equalsIgnoreCase("help")){
+			}else if(input.contains("elevar")){
+				String[] numero = input.split(" elevar ");
+				elevar(numero[0], numero[1]);
+			}else if(input.contains("lista")){
+				long resultado = 0;
+				System.out.println("Añade los numeros que quieras en la lista");
+				boolean annadirMas = true;
+				boolean fallo = true;
+				ArrayList<Integer> lista = new ArrayList<>();
+				while(annadirMas){
+					try{
+						int numero = sc.nextInt();
+						lista.add(numero);
+					}catch(InputMismatchException i){
+						System.out.println("di un número");
+						annadirMas = false;
+					}
+					annadirMas = true;
+					System.out.println("¿Quieres añadir más numeros?");
+					while(fallo){
+						String contestacion = sc.next();
+
+						if(contestacion.equalsIgnoreCase("y")){
+							System.out.println("sigue");
+							fallo = false;
+							annadirMas = true;
+						}else if(contestacion.equalsIgnoreCase("n")){
+							fallo = false;
+							annadirMas = false;
+						}else{
+							System.out.println("por favor responde 'y' si es un si, o 'n' si es un no.");
+							fallo = true;
+
+
+						}
+					}
+				}
+
+				for(int i = 0; i < lista.size(); i++){
+					resultado += lista.get(i);
+				}
+
+				System.out.println(resultado);
+
+			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
-			}else if(suma.equalsIgnoreCase("exit")){
+			}else if(input.equalsIgnoreCase("exit")){
 				repetir = false;
 			}else{
 				printHelp();
@@ -27,13 +74,14 @@ public class Principal{
 		}
 		sc.close();
 	}
-	
+
 	public static void printHelp(){
 		String mensaje = "Tienes estas opciones: \n" + 
 			"Ayuda: help\n" +
 			"Salir: exit\n" +
 			"Sumatorio: 'suma' (numero)\n" +
-			"Factorial: (numero)!\n";
+			"Factorial: (numero)!\n" + 
+			"Elevar: (numero) elevar (potencia)\n";
 		System.out.println(mensaje);
 	}
 
@@ -53,4 +101,10 @@ public class Principal{
 		}
 		System.out.println(resultado);
 	}
+
+	public static void elevar(String numero, String potencia){
+		double resultado = Math.pow(Double.parseDouble(numero), Double.parseDouble(potencia));
+		System.out.println(resultado);
+	}
+
 }
