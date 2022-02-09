@@ -4,45 +4,31 @@ import java.util.Scanner;
 
 public class Principal{
 	public static void main(String[] args){
-		/*String sentencia = "";
-
-		for(int i = 0; i < args.length; i++){
-			sentencia += args[i] + " ";
-		}
-
-		if(sentencia.contains("suma")){
-			System.out.println("suma");
-			String[] partes = sentencia.split(" ");
-			suma(Integer.parseInt(partes[1]));
-		}else{
-			System.out.println("afja");
-		}
-		/*/
 		Scanner sc = new Scanner(System.in);
 
-		String suma = sc.next();
-		String[] numero = suma.split(" ");
-		
-		suma(Integer.parseInt(numero[1]));
-		/*String input = sc.next();
-		if(input.contains("suma")){
-			String[] partes = input.split(" ");
-			suma(Integer.parseInt(partes[1]));
-		}else{
-			System.out.println("El input esta mal");
-		}
+		String suma = sc.nextLine();
 
-		if(args[0].equalsIgnoreCase("suma")){
-			suma(Integer.parseInt(args[1]));
-		}else{
-			System.out.println("lajf");
-		}*/
+		if(suma.contains("suma")){
+			String[] numero = suma.split(" ");
+			suma(Integer.parseInt(numero[1]));
+		}else if(suma.contains("!")){
+			String[] numero = suma.split("!");
+			factorial(Long.parseLong(numero[0]));
+		}
 	}
 
 	public static void suma(int n){
 		long resultado = 0;
 		for(int i = 0; i <= n; i++){
 			resultado += i;
+		}
+		System.out.println(resultado);
+	}
+
+	public static void factorial(long n){
+		long resultado = 1; 
+		for(int i = 1; i<= n; i++){
+			resultado *= i;
 		}
 		System.out.println(resultado);
 	}
