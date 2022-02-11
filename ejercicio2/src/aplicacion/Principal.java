@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.lang.NumberFormatException;
 
 public class Principal{
 	public static void main(String[] args){
@@ -23,45 +24,67 @@ public class Principal{
 				String[] numero = input.split(" elevar ");
 				elevar(numero[0], numero[1]);
 			}else if(input.contains("lista")){
-				long resultado = 0;
-				System.out.println("Añade los numeros que quieras en la lista");
-				boolean annadirMas = true;
+				/*long resultado = 0;
+				  System.out.println("Añade los numeros que quieras en la lista");
+				  boolean annadirMas = true;
+				  boolean fallo = true;
+				  ArrayList<Integer> lista = new ArrayList<>();
+				  while(annadirMas){
+				  annadirMas = false;
+				  try{
+				  int numero = sc.nextInt();
+				  lista.add(numero);
+				  }catch(InputMismatchException i){
+				  System.out.println("di un número");
+				//	annadirMas = true;
+
+				  }
+				//annadirMas = true;
+				System.out.println("¿Quieres añadir más numeros?");
+				while(fallo){
+				String contestacion = sc.next();
+
+				if(contestacion.equalsIgnoreCase("y")){
+				System.out.println("sigue");
+				fallo = false;
+				annadirMas = true;
+				}else if(contestacion.equalsIgnoreCase("n")){
+				fallo = false;
+				annadirMas = false;
+				}else{
+				System.out.println("por favor responde 'y' si es un si, o 'n' si es un no.");
+				fallo = true;
+
+
+				}
+				}
+				  }
+
+				  for(int i = 0; i < lista.size(); i++){
+				  resultado += lista.get(i);
+				  }
+				  System.out.println(resultado);*/
 				boolean fallo = true;
-				ArrayList<Integer> lista = new ArrayList<>();
-				while(annadirMas){
-					try{
-						int numero = sc.nextInt();
-						lista.add(numero);
-					}catch(InputMismatchException i){
-						System.out.println("di un número");
-						annadirMas = false;
-					}
-					annadirMas = true;
-					System.out.println("¿Quieres añadir más numeros?");
-					while(fallo){
-						String contestacion = sc.next();
+				int suma = 0;
 
-						if(contestacion.equalsIgnoreCase("y")){
-							System.out.println("sigue");
+				while(fallo){
+					System.out.println("¿Qué números quieres añadir a la lista?");
+					String respuesta = sc.nextLine();
+
+					String[] numeros = respuesta.split(", ");
+
+					for(int i = 0; i< numeros.length; i++){
+						try{
+							suma += Integer.parseInt(numeros[i]);
 							fallo = false;
-							annadirMas = true;
-						}else if(contestacion.equalsIgnoreCase("n")){
-							fallo = false;
-							annadirMas = false;
-						}else{
-							System.out.println("por favor responde 'y' si es un si, o 'n' si es un no.");
+						}catch(NumberFormatException e){
+							System.out.println("Has introducido un caracter que no es un numero");
+							i = numeros.length - 1;
 							fallo = true;
-
-
 						}
 					}
 				}
-
-				for(int i = 0; i < lista.size(); i++){
-					resultado += lista.get(i);
-				}
-
-				System.out.println(resultado);
+				System.out.println(suma);
 
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
@@ -81,7 +104,8 @@ public class Principal{
 			"Salir: exit\n" +
 			"Sumatorio: 'suma' (numero)\n" +
 			"Factorial: (numero)!\n" + 
-			"Elevar: (numero) elevar (potencia)\n";
+			"Elevar: (numero) elevar (potencia)\n" +
+			"Sumar números de una lista: 'lista'\n";
 		System.out.println(mensaje);
 	}
 
@@ -105,6 +129,14 @@ public class Principal{
 	public static void elevar(String numero, String potencia){
 		double resultado = Math.pow(Double.parseDouble(numero), Double.parseDouble(potencia));
 		System.out.println(resultado);
+	}
+	
+	public static void guardarEnFichero(String texto){
+		File file = new FIle("registro");
+		FileWriter fw = new FileWriter(file);
+	}
+	public static void media(int[] lista){
+			
 	}
 
 }
