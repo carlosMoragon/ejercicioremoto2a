@@ -5,6 +5,8 @@ import java.lang.Math;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.lang.NumberFormatException;
+import java.io.File;
+import java.
 
 public class Principal{
 	public static void main(String[] args){
@@ -23,7 +25,7 @@ public class Principal{
 			}else if(input.contains("elevar")){
 				String[] numero = input.split(" elevar ");
 				elevar(numero[0], numero[1]);
-			}else if(input.contains("lista")){
+			}else if(input.contains("lista")) {
 				/*long resultado = 0;
 				  System.out.println("Añade los numeros que quieras en la lista");
 				  boolean annadirMas = true;
@@ -67,17 +69,17 @@ public class Principal{
 				boolean fallo = true;
 				int suma = 0;
 
-				while(fallo){
+				while (fallo) {
 					System.out.println("¿Qué números quieres añadir a la lista?");
 					String respuesta = sc.nextLine();
 
 					String[] numeros = respuesta.split(", ");
 
-					for(int i = 0; i< numeros.length; i++){
-						try{
+					for (int i = 0; i < numeros.length; i++) {
+						try {
 							suma += Integer.parseInt(numeros[i]);
 							fallo = false;
-						}catch(NumberFormatException e){
+						} catch (NumberFormatException e) {
 							System.out.println("Has introducido un caracter que no es un numero");
 							i = numeros.length - 1;
 							fallo = true;
@@ -85,7 +87,11 @@ public class Principal{
 					}
 				}
 				System.out.println(suma);
-
+			}else if(input.equalsIgnoreCase("media")){
+				System.out.println("Introduce los números con los que quieras hacer la media");
+				String respuesta = sc.nextLine();
+				String[] lista = respuesta.split(" , ");
+				media(lista);
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
 			}else if(input.equalsIgnoreCase("exit")){
@@ -135,8 +141,14 @@ public class Principal{
 		File file = new FIle("registro");
 		FileWriter fw = new FileWriter(file);
 	}
-	public static void media(int[] lista){
-			
+
+	public static void media(String[] lista){
+		int suma = 0;
+		for(int i = 0; i<lista.length; i++){
+			suma += Integer.parseInt(lista[i]);
+		}
+		int media = suma/lista.length;
+		System.out.println(media);
 	}
 
 }
