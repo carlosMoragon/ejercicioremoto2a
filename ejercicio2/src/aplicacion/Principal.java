@@ -17,7 +17,7 @@ public class Principal{
 			System.out.println("-----------------------------");
 			String input = sc.nextLine();
 
-			if(input.contains("suma")){
+			if(input.contains("suma ")){
 				String[] numero = input.split(" ");
 				suma(Integer.parseInt(numero[1]));
 			}else if(input.contains("!")){
@@ -26,47 +26,7 @@ public class Principal{
 			}else if(input.contains("elevar")){
 				String[] numero = input.split(" elevar ");
 				elevar(numero[0], numero[1]);
-			}else if(input.contains("lista")) {
-				/*long resultado = 0;
-				  System.out.println("Añade los numeros que quieras en la lista");
-				  boolean annadirMas = true;
-				  boolean fallo = true;
-				  ArrayList<Integer> lista = new ArrayList<>();
-				  while(annadirMas){
-				  annadirMas = false;
-				  try{
-				  int numero = sc.nextInt();
-				  lista.add(numero);
-				  }catch(InputMismatchException i){
-				  System.out.println("di un número");
-				//	annadirMas = true;
-
-				  }
-				//annadirMas = true;
-				System.out.println("¿Quieres añadir más numeros?");
-				while(fallo){
-				String contestacion = sc.next();
-
-				if(contestacion.equalsIgnoreCase("y")){
-				System.out.println("sigue");
-				fallo = false;
-				annadirMas = true;
-				}else if(contestacion.equalsIgnoreCase("n")){
-				fallo = false;
-				annadirMas = false;
-				}else{
-				System.out.println("por favor responde 'y' si es un si, o 'n' si es un no.");
-				fallo = true;
-
-
-				}
-				}
-				  }
-
-				  for(int i = 0; i < lista.size(); i++){
-				  resultado += lista.get(i);
-				  }
-				  System.out.println(resultado);*/
+			}else if(input.contains("sumalista")) {
 				boolean fallo = true;
 				int suma = 0;
 
@@ -92,12 +52,23 @@ public class Principal{
 				System.out.println("Introduce los números con los que quieras hacer la media");
 				String respuesta = sc.nextLine();
 				String[] lista = respuesta.split(", ");
-				media(lista);
-			}else if(input.equalsIgnoreCase("desviación"){
+				System.out.println(media(lista));
+			}else if(input.equalsIgnoreCase("desviacion")){
 				System.out.println("Introduce los numeros con los que quieras hallar la desviacion típica");
 				String respuesta = sc.nextLine();
 				String[] lista = respuesta.split(", ");
-				desviacion(lista);
+				desviacion(lista, media(lista));
+			}else if(input.contains("sumaPares")){
+				String[] partes = input.split("");
+				if(partes[10].equals("[")){
+					String sentencia = input.substring(11, partes.length - 2);
+					String[] numeros = sentencia.split(",");
+					sumaPares(numeros);
+
+				}else{
+					String numero = input.substring(10, partes.length - 1);
+					sumaPares(Long.parseLong(numero));
+				}
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
 			}else if(input.equalsIgnoreCase("exit")){
@@ -117,8 +88,10 @@ public class Principal{
 			"Sumatorio: 'suma' (numero)\n" +
 			"Factorial: (numero)!\n" + 
 			"Elevar: (numero) elevar (potencia)\n" +
+			"\nAl dar los numeros de la lista deben de tener el formato: 2, 4, 10, ...\n" +
 			"Sumar números de una lista: 'lista'\n" + 
-			"Media de los numeros de una lista: 'media'\n";
+			"Media de los numeros de una lista: 'media'\n" +
+			"Desviacion tipica: 'desviacion'";
 		System.out.println(mensaje);
 	}
 
@@ -154,21 +127,51 @@ public class Principal{
 	   }
 	   */
 
-	public static void media(String[] lista){
-
+	public static double media(String[] lista){
+		double media = 0;
 		try{
-			int suma = 0;
+			double suma = 0;
 			for(int i = 0; i<lista.length; i++){
-				suma += Integer.parseInt(lista[i]);
+				suma += Double.parseDouble(lista[i]);
 			}
-			int media = suma/lista.length;
-			System.out.println(media);
+			media = suma/lista.length;
 		} catch (NumberFormatException e) {
 		}
+		return media;
 	}
 
-	public static void desviacion(String[] lista){
-		//hallar la variacion tipica
+	public static void desviacion(String[] lista, double media){
+		double sumaValores = 0.00;
+		double desviacion = 0.00;
+		double suma1 = 0.00;
+		try{
+			for(int i = 0; i < lista.length; i++){
+				sumaValores += Double.parseDouble(lista[i]) - media;
+
+			}
+		}catch(NumberFormatException e){
+		}
+		double sinRaiz = sumaValores/lista.length;
+		desviacion = Math.pow(sinRaiz, 0.50);
+		System.out.println("sumaValores: " + sumaValores + "\nsinRaiz: " + sinRaiz + "\ndesviacion: " + desviacion);
+		//System.out.println("La media es: " + media + " y la desviación típica es: " + desviacion);
 	}
 
+	public static void sumaPares(long n){
+		long suma = 0;
+		for(int i = 0; i <= n; i += 2){
+			suma += i;
+		}
+		System.out.println(suma);
+	}
+	
+	public static void sumaPares(String[] lista){
+		int suma = 0;
+		for(int i = 0; i < lista.length; i++){
+			if(Integer.parseInt(lista[i]) % 2 == 0){
+				suma += Integer.parseInt(lista[i]);
+			}
+		}
+		System.out.println(suma);
+	}
 }
