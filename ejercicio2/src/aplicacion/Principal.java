@@ -5,9 +5,10 @@ import java.lang.Math;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.lang.NumberFormatException;
-import java.io.File;
-import java.
-
+/*
+   import java.io.File;
+   import java.
+   */
 public class Principal{
 	public static void main(String[] args){
 		Scanner sc = new Scanner(System.in);
@@ -90,8 +91,13 @@ public class Principal{
 			}else if(input.equalsIgnoreCase("media")){
 				System.out.println("Introduce los números con los que quieras hacer la media");
 				String respuesta = sc.nextLine();
-				String[] lista = respuesta.split(" , ");
+				String[] lista = respuesta.split(", ");
 				media(lista);
+			}else if(input.equalsIgnoreCase("desviación"){
+				System.out.println("Introduce los numeros con los que quieras hallar la desviacion típica");
+				String respuesta = sc.nextLine();
+				String[] lista = respuesta.split(", ");
+				desviacion(lista);
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
 			}else if(input.equalsIgnoreCase("exit")){
@@ -111,7 +117,8 @@ public class Principal{
 			"Sumatorio: 'suma' (numero)\n" +
 			"Factorial: (numero)!\n" + 
 			"Elevar: (numero) elevar (potencia)\n" +
-			"Sumar números de una lista: 'lista'\n";
+			"Sumar números de una lista: 'lista'\n" + 
+			"Media de los numeros de una lista: 'media'\n";
 		System.out.println(mensaje);
 	}
 
@@ -136,19 +143,32 @@ public class Principal{
 		double resultado = Math.pow(Double.parseDouble(numero), Double.parseDouble(potencia));
 		System.out.println(resultado);
 	}
-	
-	public static void guardarEnFichero(String texto){
-		File file = new FIle("registro");
-		FileWriter fw = new FileWriter(file);
-	}
+	/*
+	   public static void guardarEnFichero(String texto){
+	   try{
+	   File file = new File("registro");
+	   FileWriter fw = new FileWriter(file);
+
+	   }catch(FileNotFoundException f){
+	   }
+	   }
+	   */
 
 	public static void media(String[] lista){
-		int suma = 0;
-		for(int i = 0; i<lista.length; i++){
-			suma += Integer.parseInt(lista[i]);
+
+		try{
+			int suma = 0;
+			for(int i = 0; i<lista.length; i++){
+				suma += Integer.parseInt(lista[i]);
+			}
+			int media = suma/lista.length;
+			System.out.println(media);
+		} catch (NumberFormatException e) {
 		}
-		int media = suma/lista.length;
-		System.out.println(media);
+	}
+
+	public static void desviacion(String[] lista){
+		//hallar la variacion tipica
 	}
 
 }
