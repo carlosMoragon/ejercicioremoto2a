@@ -69,6 +69,18 @@ public class Principal{
 					String numero = input.substring(10, partes.length - 1);
 					sumaPares(Long.parseLong(numero));
 				}
+			}else if(input.contains("obtenerListaPar")){
+				String[] partes = input.split("");
+				String numeros = input.substring(input.indexOf("[") + 1 , partes.length -2);
+				String[] numerosArray = numeros.split(",");
+				obtenerListaPar(numerosArray);
+			}else if(input.contains("listaPar")){
+				String numero = input.substring(9, input.indexOf(")"));
+				System.out.println(numero);
+				listaPar(numero);
+			}else if(input.equalsIgnoreCase("calcularProductoEscalar")){
+				System.out.println("Introduzca el primer vector:");
+				String vector1 = sc.nextLine();
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
 			}else if(input.equalsIgnoreCase("exit")){
@@ -143,18 +155,18 @@ public class Principal{
 	public static void desviacion(String[] lista, double media){
 		double sumaValores = 0.00;
 		double desviacion = 0.00;
-		double suma1 = 0.00;
 		try{
 			for(int i = 0; i < lista.length; i++){
-				sumaValores += Double.parseDouble(lista[i]) - media;
+				sumaValores += Math.pow((Double.parseDouble(lista[i]) - media),2);
 
 			}
 		}catch(NumberFormatException e){
+			System.out.println("f");
 		}
 		double sinRaiz = sumaValores/lista.length;
-		desviacion = Math.pow(sinRaiz, 0.50);
-		System.out.println("sumaValores: " + sumaValores + "\nsinRaiz: " + sinRaiz + "\ndesviacion: " + desviacion);
-		//System.out.println("La media es: " + media + " y la desviación típica es: " + desviacion);
+		desviacion = Math.sqrt(sinRaiz);
+		//System.out.println("sumaValores: " + sumaValores + "\nsinRaiz: " + sinRaiz + "\ndesviacion: " + desviacion);
+		System.out.println("La media es: " + media + " y la desviación típica es: " + desviacion);
 	}
 
 	public static void sumaPares(long n){
@@ -164,7 +176,7 @@ public class Principal{
 		}
 		System.out.println(suma);
 	}
-	
+
 	public static void sumaPares(String[] lista){
 		int suma = 0;
 		for(int i = 0; i < lista.length; i++){
@@ -173,5 +185,40 @@ public class Principal{
 			}
 		}
 		System.out.println(suma);
+	}
+
+	public static void obtenerListaPar(String[] numeros){
+		ArrayList<Integer> pares = new ArrayList<>();
+
+		try{
+			for(int i = 0; i < numeros.length; i++){
+				if(Integer.parseInt(numeros[i]) % 2 ==  0){
+					pares.add(Integer.parseInt(numeros[i]));
+				}else{
+				}
+			}
+		}catch(NumberFormatException n){
+			System.out.println("Se ha producido un error");
+		}
+		System.out.println(pares);
+	}
+
+	public static void listaPar(String numero){
+		ArrayList<Integer> pares = new ArrayList<>();
+		int n = Integer.parseInt(numero);
+		for(int i = 2;i<n;i++){
+			if(i % 2 == 0){
+				pares.add(i);
+			}
+		}
+		System.out.println(pares);
+	}
+
+	public static void calcularProductoEscalar(int[] v, int[] u){
+		int solucion = 0;
+		for(int i = 0; i < v.length; i++){
+			solucion += v[i]*u[i];
+		}
+		System.out.println(solucion);
 	}
 }
