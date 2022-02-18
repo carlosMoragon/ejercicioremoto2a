@@ -81,6 +81,8 @@ public class Principal{
 			}else if(input.equalsIgnoreCase("calcularProductoEscalar")){
 				System.out.println("Introduzca el primer vector:");
 				String vector1 = sc.nextLine();
+				System.out.println("Introduce el segundo vector:");
+				String vector2 = sc.nextLine();
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
 			}else if(input.equalsIgnoreCase("exit")){
