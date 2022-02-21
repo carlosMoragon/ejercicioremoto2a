@@ -62,15 +62,15 @@ public class Principal{
 		}
 	}
 
-	public static double desviacion(int[] lista, int i, double media){
+	public static double desviacion(int[] lista, int i, int media){
 		if(i == 0){
 			return potencia(lista[i] - media, 2);
 		}else{
-			return potencia(lista[i] - media, 2) + desviacion(lista, i - 1, media);
+			return /*potencia(lista[i] - media, 2)*/ desviacion(lista, i - 1, media);
 		}
 	}
 
 	public static double desviacion(int[] lista){
-		return Math.sqrt(desviacion(lista, lista.length - 1, media(lista, lista.length - 1)/lista.length)/lista.length);
+		return Math.sqrt(desviacion(lista, lista.length - 1, media(lista, lista.length - 1)/lista.length));///(lista.length - 1));
 	}
 }	

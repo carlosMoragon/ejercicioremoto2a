@@ -79,10 +79,14 @@ public class Principal{
 				System.out.println(numero);
 				listaPar(numero);
 			}else if(input.equalsIgnoreCase("calcularProductoEscalar")){
-				System.out.println("Introduzca el primer vector:");
+				System.out.println("Introduzca el primer vector, con la forma: [1,2,4]");
 				String vector1 = sc.nextLine();
-				System.out.println("Introduce el segundo vector:");
+				System.out.println("Introduce el segundo vector, con la forma: [3,5,10]");
 				String vector2 = sc.nextLine();
+				calcularProductoEscalar(obtenerVector(vector1), obtenerVector(vector2));
+			}else if(input.contains("Fibonacci(")){
+				String numero = input.substring(input.indexOf("(") + 1, input.indexOf(")"));
+				System.out.println(terminoFibonacci(Integer.parseInt(numero)));
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
 			}else if(input.equalsIgnoreCase("exit")){
@@ -105,7 +109,12 @@ public class Principal{
 			"\nAl dar los numeros de la lista deben de tener el formato: 2, 4, 10, ...\n" +
 			"Sumar números de una lista: 'lista'\n" + 
 			"Media de los numeros de una lista: 'media'\n" +
-			"Desviacion tipica: 'desviacion'";
+			"Desviacion tipica: 'desviacion'\n" +
+			"sumaPares([1,2,3,4])\n" +
+			"Filtrar pares de la lista: obtenerListaPar([1,2,3,4])" +
+			"Listar los números pares: listarPar([9])\n" +
+			"Producto escalar: 'calcularProductoEscalar'\n" +
+			"Termino n de la sucesión de Fibonacci: 'Fibonacci(9)'\n";
 		System.out.println(mensaje);
 	}
 
@@ -215,12 +224,34 @@ public class Principal{
 		}
 		System.out.println(pares);
 	}
+	
+	public static ArrayList<Integer> obtenerVector(String vector){
+		ArrayList<Integer> vectorFinal = new ArrayList<>();
+		String[] array = vector.split("");
+		String paso1 = vector.substring(1,array.length -1);
+		String[] paso2 = paso1.split(",");
 
-	public static void calcularProductoEscalar(int[] v, int[] u){
+		for(int i = 0;i<paso2.length;i++){
+			vectorFinal.add(Integer.parseInt(paso2[i]));
+		}
+
+		return vectorFinal;
+	}
+
+	public static void calcularProductoEscalar(ArrayList<Integer> v, ArrayList<Integer> u){
 		int solucion = 0;
-		for(int i = 0; i < v.length; i++){
-			solucion += v[i]*u[i];
+		for(int i = 0; i < v.size(); i++){
+			solucion += v.get(i)*u.get(i);
 		}
 		System.out.println(solucion);
+	}
+
+	public static int terminoFibonacci(int n){
+		if(n <= 1){
+			return 1;
+		}else{
+			//return ((n - 1) /*+ (n - 2)*/) + terminoFibonacci(n - 1); 
+			return n - 1 + terminoFibonacci(n - 2);
+		}
 	}
 }
