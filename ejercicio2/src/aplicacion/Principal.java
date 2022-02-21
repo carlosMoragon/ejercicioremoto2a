@@ -87,6 +87,8 @@ public class Principal{
 			}else if(input.contains("Fibonacci(")){
 				String numero = input.substring(input.indexOf("(") + 1, input.indexOf(")"));
 				System.out.println(terminoFibonacci(Integer.parseInt(numero)));
+			}else if(input.equalsIgnoreCase("comparacion")){
+				comparacion();
 			}else if(input.equalsIgnoreCase("help")){
 				printHelp();
 			}else if(input.equalsIgnoreCase("exit")){
@@ -247,11 +249,19 @@ public class Principal{
 	}
 
 	public static int terminoFibonacci(int n){
-		if(n <= 1){
+		if(n <= 2){
 			return 1;
 		}else{
-			//return ((n - 1) /*+ (n - 2)*/) + terminoFibonacci(n - 1); 
-			return n - 1 + terminoFibonacci(n - 2);
+			return terminoFibonacci(n - 1) + terminoFibonacci(n - 2);
 		}
+	}
+
+	public static void comparacion(){
+		double operacion = (1 + Math.sqrt(5))/2;
+		double fibonacci = terminoFibonacci(13) / terminoFibonacci(12);
+		System.out.println("operacion: " + operacion);
+		System.out.println("Fibonacci(13) - Fibonacci(12): " + fibonacci);
+		//System.out.println("Relación: " + operacion / fibonacci);
+		
 	}
 }
