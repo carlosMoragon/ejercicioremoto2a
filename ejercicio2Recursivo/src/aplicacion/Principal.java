@@ -4,7 +4,7 @@ import java.lang.StackOverflowError;
 public class Principal{
 	public static void main(String[] args){
 		int[] array1 = {1, 2, 10, 23};
-
+		System.out.println("----------------------------------");
 		System.out.println("Sumatorio: " + sumatorio(8));
 		System.out.println("Sumatorio intervalo: " + sumaIntervalo(2,8));
 		System.out.println("8!: " + factorial(8));
@@ -62,15 +62,18 @@ public class Principal{
 		}
 	}
 
-	public static double desviacion(int[] lista, int i, int media){
+/*	public static double desviacion(int[] lista, int i, int media){
 		if(i == 0){
 			return potencia(lista[i] - media, 2);
 		}else{
-			return /*potencia(lista[i] - media, 2)*/ desviacion(lista, i - 1, media);
+			return /*potencia(lista[i] - media, 2)*/ /*desviacion(lista, i - 1, media);
 		}
 	}
 
 	public static double desviacion(int[] lista){
 		return Math.sqrt(desviacion(lista, lista.length - 1, media(lista, lista.length - 1)/lista.length));///(lista.length - 1));
+	}*/
+
+	public static double desviacion(){
 	}
 }	

@@ -15,8 +15,9 @@ public class Principal{
 		boolean repetir = true;
 		while(repetir){
 			System.out.println("-----------------------------");
+			elevarIterativo(10, 2);
 			String input = sc.nextLine();
-
+			
 			if(input.contains("suma ")){
 				String[] numero = input.split(" ");
 				suma(Integer.parseInt(numero[1]));
@@ -26,7 +27,7 @@ public class Principal{
 			}else if(input.contains("elevar")){
 				String[] numero = input.split(" elevar ");
 				elevar(numero[0], numero[1]);
-			}else if(input.contains("sumalista")) {
+			}else if(input.equalsIgnoreCase("sumalista")) {
 				boolean fallo = true;
 				int suma = 0;
 
@@ -109,7 +110,7 @@ public class Principal{
 			"Factorial: (numero)!\n" + 
 			"Elevar: (numero) elevar (potencia)\n" +
 			"\nAl dar los numeros de la lista deben de tener el formato: 2, 4, 10, ...\n" +
-			"Sumar números de una lista: 'lista'\n" + 
+			"Sumar números de una lista: 'sumaLista'\n" + 
 			"Media de los numeros de una lista: 'media'\n" +
 			"Desviacion tipica: 'desviacion'\n" +
 			"sumaPares([1,2,3,4])\n" +
@@ -139,6 +140,14 @@ public class Principal{
 
 	public static void elevar(String numero, String potencia){
 		double resultado = Math.pow(Double.parseDouble(numero), Double.parseDouble(potencia));
+		System.out.println(resultado);
+	}
+
+	public static void elevarIterativo(int b, int e){
+		long resultado = 1;
+		for(int i = 0; i <= e; i++){
+			resultado = b * b;
+		}
 		System.out.println(resultado);
 	}
 	/*
@@ -249,6 +258,14 @@ public class Principal{
 	}
 
 	public static int terminoFibonacci(int n){
+		/*if(n = 0){
+		 * 	return 0;
+		 * }else if(n == 1){
+		 * 	return 1;
+		 * }else{
+		 * 	return terminoFibonacci(n - 1) + terminoFibonacci(n - 2);
+		 * }
+		 */
 		if(n <= 2){
 			return 1;
 		}else{
@@ -260,8 +277,8 @@ public class Principal{
 		double operacion = (1 + Math.sqrt(5))/2;
 		double fibonacci = terminoFibonacci(13) / terminoFibonacci(12);
 		System.out.println("operacion: " + operacion);
-		System.out.println("Fibonacci(13) - Fibonacci(12): " + fibonacci);
-		//System.out.println("Relación: " + operacion / fibonacci);
+		System.out.println("Fibonacci(13) / Fibonacci(12): " + fibonacci);
+		System.out.println("Resta de ambos: " + (operacion - fibonacci));
 		
 	}
 }
