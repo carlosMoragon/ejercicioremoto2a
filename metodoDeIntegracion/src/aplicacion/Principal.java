@@ -1,13 +1,16 @@
 package aplicacion;
-import java.util.Function;
+import java.util.function.Function;
 public class Principal{
+	/**
+	 * @see En esta clase se realiza la integral defininida de 1 a 10, de la funcion x^2
+	 */
 	public static void main(String[] args){
-		integral(1, 10, x->x*x);
+		System.out.println(integral(1, 10, x-> x*x));
 	}
-
-	public static double integral(int a, int b, Function<float, float> f){
+	
+	public static double integral(float a, float b, Function<Float, Float> f){
 		//Function <entrada, resultado>
-		//Operation <float> float es tipo de entrada y de resultado
+		//Operation <Float> float es tipo de entrada y de resultado
 		//
 		//metodo apply es para retornar
 		float fa = f.apply(a);

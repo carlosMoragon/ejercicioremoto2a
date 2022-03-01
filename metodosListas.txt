@@ -1,0 +1,24 @@
+
+	ArrayList<Persona> Lista = new ArrayList();
+	
+	Ejemplo:
+		List<String>jubilados = Lista.stream();
+--------------------------------------------------------
+	
+	+ Opciones:
+	  --------
+
+	Lista.stream()
+		- Flujo asociado con el contenedor.
+
+	Lista.filter(p -> p.jubilado())
+		- Filtra a los jubilados, de la lista.
+
+	Lista.map(p -> p.getNombre())
+		- Transforma en nombre.
+
+	Lista.collect(Collectors.toList())
+		- Convierte el flujo en contenedor (List).
+
+	jubilados.forEach(System.out::println);
+		- Recorre la lista, e imprime por pantalla los jubilados.
