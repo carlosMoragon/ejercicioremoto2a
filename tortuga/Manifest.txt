@@ -1,2 +1,2 @@
-Main-Class: aplicacion.Principal
+Main-Class: aplicacion.CurvasC
 

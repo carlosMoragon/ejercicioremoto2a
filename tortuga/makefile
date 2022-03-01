@@ -5,7 +5,7 @@ jar:compilar
 	jar cvfm ap-personas.jar Manifest.txt -C bin .
 
 ejecutar: compilar
-	java -cp bin aplicacion.Principal
+	java -cp bin aplicacion.CurvasC
 limpiar:
 	rm -rf bin
 javadoc:compilar
