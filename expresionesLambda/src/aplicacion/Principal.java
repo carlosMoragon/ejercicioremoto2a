@@ -96,7 +96,7 @@ public class Principal{
 		//		s -> s.length() < 5
 		//	import java.util.function.Predicate;
 
-
+		//MUY IMPORTANTE: LOS INTEFACES TRABAJAN CON LAS CLASES. Si quieres un float, pon la clase Float. Si quieres un int, pon la clase Integer.
 
 	}
 }
