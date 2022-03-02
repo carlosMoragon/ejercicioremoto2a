@@ -22,3 +22,6 @@
 
 	jubilados.forEach(System.out::println);
 		- Recorre la lista, e imprime por pantalla los jubilados.
+	
+	Lista.sort():
+		- Para ordenar

@@ -6,7 +6,7 @@ public class Principal{
 	 */
 	public static void main(String[] args){
 		System.out.println(integral(1, 10, x-> x*x));
-	//	System.out.println(integralNewton(1, 10, x -> x*x));
+		System.out.println(integralNewton(1, 10, x -> x*x));
 	}
 	
 	public static double integral(float a, float b, Function<Float, Float> f){
@@ -18,16 +18,16 @@ public class Principal{
 		float fb = f.apply(b);
 		return (b-a) * (fa + fb)/2;
 	}
-/*
+
 	public static double integralNewton(float a, float b, Function<Float, Float> f){
 		//distancia de punto a punto: b - a /10
 		float distancia = (b - a) / 10;
-		float integral = 0;
+		float altura = 0;
 		for(float i = a; i <= b; i += distancia){
-			integral += distancia * (f.apply(i) + f.apply(i + distancia));
+			altura += f.apply(i);
 		}
-		return integral/11;
+		return (b - a) * altura/11;
 	}
-*/
+
 
 }

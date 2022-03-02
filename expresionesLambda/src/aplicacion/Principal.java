@@ -97,6 +97,16 @@ public class Principal{
 		//	import java.util.function.Predicate;
 
 		//MUY IMPORTANTE: LOS INTEFACES TRABAJAN CON LAS CLASES. Si quieres un float, pon la clase Float. Si quieres un int, pon la clase Integer.
+		
+		/*
+		List<String>jubilados = Lista
+
+		.stream() //crea un flujo de datos
+		.filter(p -> p.jubilado())  //filtra el flujo de datos obteniendo los jubilados
+		.map(p -> p.getNombre())    //obtinene de ese filtrados los nombres
+		.collect(Collectors.toList());	//convierte el listado de nombres en una lista
+		jubilados.forEach(System.out::println);	//va filtrando los elementos de la lista
+		*/
 
 	}
 }
