@@ -9,6 +9,8 @@ public class Principal{
 		System.out.println(factorial(8, lista));
 		lista.clear();
 		System.out.println(potencia(2, 3, lista));
+		lista.clear();
+		System.out.println(media(15, lista));
 		
 	}
 
@@ -59,8 +61,22 @@ public class Principal{
 		return lista.stream().reduce(1,(x,y) -> x * y);
 	}
 
-	public static int media(int[] lista){
-		
+	public static int media(int n, ArrayList<Integer> lista){
+		Interfaz lista1 = x -> {
+			int numero = 0;
+			for(int i = 0; i<= x; i++){
+				numero = (int) Math.floor(Math.random()*100);
+				lista.add(numero);
+			}
+			return lista;
+		};
+		lista1.getLista(n);
+				
+		System.out.println(lista);
+		int media = lista.stream().reduce(0,(x,y) -> x + y);
+		return media/lista.size();
 	}
+
+	public static 
 }
 
