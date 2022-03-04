@@ -15,12 +15,14 @@ public class Principal{
 			System.out.println(torreOrigen + " a " + torreDestino);
 		}else{
 			torresDeHanoi(numeroDiscos - 1,torreOrigen, torreDestino, torreAuxiliar);
-			System.out.println(torreOrigen + " a " + torreAuxiliar);
+			mensaje(torreOrigen, torreDestino);
 			torresDeHanoi(numeroDiscos - 1, torreAuxiliar, torreOrigen, torreDestino);
-			//System.out.println(torreAuxiliar + " a " + torreDestino);
-			//torresDeHanoi(numeroDiscos - 1);
 		}
 
+	}
+
+	public static void mensaje(String origen, String destino){
+		System.out.println(origen + " a " + destino);
 	}
 
 	//Hay que darle valores a los discos

@@ -1,6 +1,8 @@
 package interfaz;
+import java.util.ArrayList;
 
-@functionalInteface
+@FunctionalInterface
 public interface Interfaz{
-	public Integer getLista(Integer n);
+
+	public ArrayList<Integer> getLista(Integer n);
 }
