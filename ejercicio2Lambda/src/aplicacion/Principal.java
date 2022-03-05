@@ -1,6 +1,7 @@
 package aplicacion;
 import java.util.ArrayList;
 import interfaz.Interfaz;
+import java.util.function.Supplier;
 public class Principal{
 	public static void main(String[] args){
 		ArrayList<Integer> lista = new ArrayList<>();
@@ -10,7 +11,8 @@ public class Principal{
 		lista.clear();
 		System.out.println(potencia(2, 3, lista));
 		lista.clear();
-		System.out.println(media(15, lista));
+		System.out.println(media(15,()-> Math.random()*100, new ArrayList<Supplier<Integer>>()));
+		lista.clear();
 		
 	}
 
@@ -51,6 +53,7 @@ public class Principal{
 	}
 
 	public static Integer potencia(int base, int potencia, ArrayList<Integer> lista){
+		//en este caso utilizo el intefaz para añadir la base un total de veces en la lista
 		Interfaz lista1 = x -> {
 			for(int i = 0; i < potencia; i++){
 				lista.add(x);
@@ -61,7 +64,9 @@ public class Principal{
 		return lista.stream().reduce(1,(x,y) -> x * y);
 	}
 
-	public static int media(int n, ArrayList<Integer> lista){
+	public static int media(int n, Supplier<Integer> s, ArrayList<Supplier<Integer>> lista){
+		/*
+		//generando una lista de numeros aleatorios
 		Interfaz lista1 = x -> {
 			int numero = 0;
 			for(int i = 0; i<= x; i++){
@@ -74,9 +79,18 @@ public class Principal{
 				
 		System.out.println(lista);
 		int media = lista.stream().reduce(0,(x,y) -> x + y);
+		return media/lista.size();*/
+		for(int i = 0; i<= n; i++){
+			lista.add(s);
+		}
+		int media = lista.stream().reduce(0,(x,y) -> x + y);
 		return media/lista.size();
+
 	}
 
-	public static 
+	public static int desviacion(ArrayList<Integer> lista){
+	//	Interfaz lista1 = x -
+		return 0;
+	}
 }
 
