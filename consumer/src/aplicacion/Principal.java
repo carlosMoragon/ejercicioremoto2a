@@ -25,13 +25,20 @@ public class Principal{
 		//El metodo .set() permite sustituir el miembro de una lista
 
 		//Consumer<La clase del tipo que queremos aplicar la acción> nombre = "Expresion lambda"
-		Consumer<Double> sqrtConsumer = x -> {
-			for(int i = 0; i <lista.size(); i++){
+		Consumer<ArrayList<Double>> sqrtConsumer = list -> {
+		/*	for(int i = 0; i <lista.size(); i++){
 				lista.set(i, Math.sqrt(lista.get(i)));
-			}
+			}*/
+			list.stream().forEach(x -> Math.sqrt(x));
 		};
 
-		Consumer<Double> print = lista.stream().forEach(x -> System.out.println(x));
+
+		Consumer<ArrayList<Double>> print = list -> list.stream().forEach(System.out::println);
+
+//		sqrtConsumer(lista);
+//		print(sqrtConsumer(lista));
+		sqrtConsumer.apply(lista);
+		print.apply(lista);
 
 	}
 }
