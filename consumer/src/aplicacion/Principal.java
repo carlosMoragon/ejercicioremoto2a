@@ -29,11 +29,11 @@ public class Principal{
 		/*	for(int i = 0; i <lista.size(); i++){
 				lista.set(i, Math.sqrt(lista.get(i)));
 			}*/
-			list.stream().forEach(x -> Math.sqrt(x));
+			return list.forEach(x -> Math.sqrt(x));
 		};
 
 
-		Consumer<ArrayList<Double>> print = list -> list.stream().forEach(System.out::println);
+		Consumer<ArrayList<Double>> print = list -> list.forEach(x -> System.out.println(x));
 
 //		sqrtConsumer(lista);
 //		print(sqrtConsumer(lista));

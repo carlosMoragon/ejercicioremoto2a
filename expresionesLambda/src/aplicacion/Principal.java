@@ -36,18 +36,20 @@ public class Principal{
 		//
 		//Funciones:
 		//
-		//	Operadores Unarios:
+		//	Operadores Unarios: (UnaryOperator T -> T)
 		//		(n) -> 1.0/n
 		//
-		//	Operadores binarios:
+		//	Operadores binarios:  (BinaryOperator (T,T) -> T)
 		//		(x,y)-> x < y
 		
-
+		
 		/*INTEFACES:
 
 		Los interfaces son clases abstractas que solo tienen métodos o variables constantes.
 
 		Interfaces funcionales: son clases abstracta que solo tiene una función publico, pueden tener muchas privadas ----- @FuncionalInterface
+
+		Se declaran como: public interface "nombre"{}
 
 		Para la clase hija del interfaz funcional en vez de poner extends, ponemos implements
 
@@ -95,7 +97,9 @@ public class Principal{
 		//	Ejemplo:
 		//		s -> s.length() < 5
 		//	import java.util.function.Predicate;
-
+		//
+		//UnaryOperator(T -> T):
+		//	import java.util.function.UnaryOperator;
 		//MUY IMPORTANTE: LOS INTEFACES TRABAJAN CON LAS CLASES. Si quieres un float, pon la clase Float. Si quieres un int, pon la clase Integer.
 		
 		/*
@@ -107,6 +111,14 @@ public class Principal{
 		.collect(Collectors.toList());	//convierte el listado de nombres en una lista
 		jubilados.forEach(System.out::println);	//va filtrando los elementos de la lista
 		*/
+
+		//Para hacer un flujo de Integer desde un String, utilizamos: .chars()
+		
+
+		//Para comparar atributos utilizamos .compareTo()
+		//
+		//
+		//lista.forEach(System.out::println) //Es lo mismo que x -> System.out.println(x)
 
 	}
 }
