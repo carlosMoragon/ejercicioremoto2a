@@ -1,0 +1,78 @@
+COMO TRABAJAR CON STREAM's:
+---------------------------
+
+	- REDUCE:
+	 --------
+		- Ejecuta una acción, (como sumar todos los numero de una colección) y devuelve un valor.
+		- Metodos derivados:
+			
+			- SUM:	Suma los numeros de una lista.
+			 -----
+			
+
+			- AVERAGE: 
+			 ---------
+
+			- COUNT:
+			 -------
+
+	
+	- MAP:
+	 -----
+	 	- Transforma los elementos de un flujo.
+
+		- Ejemplo:
+			List<Persona> personas = new List();
+			personas.add(new Persona (“Pepe”,”Perez”, “pepe@gmail.com”,”13/02/1996”);
+
+			Personas.stream()
+			.map(p->p.getNombre())
+			.collect(Collectors.toList());
+
+	
+	- FILTER:
+	 --------
+	 	- Filtra los elementos de un stream, según un predicado.
+
+		-Ejemplo:
+			personas.stream()
+			.filter(p->p.edad()<20)
+			.forEach(System.out::println);
+
+	
+	- SORTED:
+	 --------
+		- Empleado para ordenar un stream según un comparador.
+		- Ejemplo:
+			personas.stream()
+			.map(p->p.getApellido())
+			.sorted(Comparator.naturalOrder())
+			.forEach(System.out::println);
+
+		- Comparadores:
+			- naturalOrder ordena en orden alfabético.
+			- reverseOrder ordena en sentido contrario al orden alfabético.
+
+	- DISTINCT:
+	 ----------
+	 	- Elimina elementos repetidos de un stream
+
+		- Ejemplo:
+			
+			personas.stream()
+			.map(p->p.getApellido())
+			.distinct()
+			.forEach(System.out::println);
+
+	- COLLECT:
+	 ---------
+	 	- Permite guardar el stream como una collección o map.
+
+		- Ejemplo:
+
+			Map<String, Long> cuenta =
+				personas.stream()
+				.map(p->p.getApellido())
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+			System.out.println(cuenta);
+

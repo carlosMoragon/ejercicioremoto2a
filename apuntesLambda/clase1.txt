@@ -1,0 +1,125 @@
+APUNTES CLASE 1 DE EXPRESIONES LAMBDA:
+--------------------------------------
+
+		(parametros) -> {Expresion}
+
+
+		Si es un lambda de 1 sola linea, no hace falta {}, ni declarar un return
+		Si es un lamba sin parametros se tiene q poner ()
+
+		FORMAS:
+
+		()->System.out.println("Hello lambda")
+
+		x->x + 10
+
+		(int x, int y)->{return x + y;}
+
+		(String x, String y)->x.length()-y.length
+
+		(String x)->{
+			listA.add(x);
+			listB.remove(x);
+		}
+		
+
+
+		TIPOS:
+
+		Productoras: sin argumentos
+			()->Math.random()*100
+		
+		Consumidoras: no devuelve resultado
+			Nombre->System.out.println("Hola " + nombre)
+		
+		Funciones:
+		
+			Operadores Unarios: (UnaryOperator T -> T)
+				(n) -> 1.0/n
+		
+			Operadores binarios:  (BinaryOperator (T,T) -> T)
+				(x,y)-> x < y
+		
+		
+		INTEFACES:
+
+		Los interfaces son clases abstractas que solo tienen métodos o variables constantes.
+
+		Interfaces funcionales: son clases abstracta que solo tiene una función publico, pueden tener muchas privadas ----- @FuncionalInterface
+
+		Se declaran como: public interface "nombre"{}
+
+		Para la clase hija del interfaz funcional en vez de poner extends, ponemos implements
+
+		
+		
+
+
+		
+		EJEMPLO:
+
+		System.out.println("Mediante clase anidada:" + new hashing(){
+			public int hash(String s){
+				int sum = 0, i = 1;
+				for(char c: s.toCharArray()) sum += c * i++;
+				return sum % DIM;
+			}}.hash("paloma"));
+		
+		
+
+
+		Java tiene definido un conjunto de interfaces funcionales, en java.util.function.*
+		
+		TIPOS:
+		
+		Consumer<T>: t->()
+			Ejecuta una acción sobre el objeto que se le pasa como argumento
+			Ejemplo:
+				x -> System.out.println(x)
+			import java.util.function.Consumer;
+		
+		Function<T,U>: t -> u
+			Transforma T a U
+			Ejemplo:
+				s -> s.length()
+			import java.util.function.Function;
+		
+		Supplier: () -> t
+			Devuelve una instancia de T
+			Ejemplo:
+				() -> Math.random() * 100
+			import java.util.function.Supplier;
+		
+		Predicate <T>:
+			Una función que devuelve un valor booleano
+			Ejemplo:
+				s -> s.length() < 5
+			import java.util.function.Predicate;
+		
+		UnaryOperator(T -> T):
+			import java.util.function.UnaryOperator;
+			
+			- Enlace a una página con ejemplos de UnaryOperator(T -> T):
+
+				https://mkyong.com/java8/java-8-unaryoperator-examples/
+
+
+		MUY IMPORTANTE: LOS INTEFACES TRABAJAN CON LAS CLASES. Si quieres un float, pon la clase Float. Si quieres un int, pon la clase Integer.
+		
+		
+		List<String>jubilados = Lista
+
+		.stream() //crea un flujo de datos
+		.filter(p -> p.jubilado())  //filtra el flujo de datos obteniendo los jubilados
+		.map(p -> p.getNombre())    //obtinene de ese filtrados los nombres
+		.collect(Collectors.toList());	//convierte el listado de nombres en una lista
+		jubilados.forEach(System.out::println);	//va filtrando los elementos de la lista
+		
+
+		Para hacer un flujo de Integer desde un String, utilizamos: .chars()
+		
+
+		Para comparar atributos utilizamos .compareTo()
+		
+		
+		lista.forEach(System.out::println) //Es lo mismo que x -> System.out.println(x)

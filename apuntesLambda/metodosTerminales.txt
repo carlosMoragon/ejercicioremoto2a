@@ -1,0 +1,63 @@
+MÉTODOS TERMINALES:
+-------------------
+
+- anyMatch:
+
+	si el predicado devuelve verdadero para cualquiera de los elementos, devuelve verdadero. Si ningún elemento coincide, se devuelve falso.
+
+
+- allMatch:
+
+	si el predicado devuelve falso para cualquiera de los elementos, devuelve falso. Si todos los elementos coinciden, se devuelve verdadero.
+
+
+- noneMatch:
+
+	si ningún elemento coincide, se devuelve verdadero; de lo contrario, se devuelve falso.
+
+
+- collect:
+
+	cada elemento se almacena en la colección pasada.
+
+
+- count:
+
+	devuelve el recuento de elementos pasados a través de métodos intermedios.
+
+
+- findAny:
+
+	devuelve una instancia opcional que contiene cualquier elemento o una instancia vacía.
+
+
+- findFirst:
+
+	devuelve el primer elemento de la instancia opcional. Para flujo vacío, se devuelve una instancia vacía.
+
+
+- forEach:
+
+	aplica la función de consumidor en cada elemento. Se utiliza, por ejemplo, para imprimir todos los elementos de una secuencia.
+
+
+- Min:
+
+	devuelve el elemento más pequeño de la secuencia. Compara elementos en función del predicado comparador pasado.
+
+
+- Max:
+
+	devuelve el elemento más grande de la secuencia. Compara elementos en función del predicado comparador pasado.
+
+
+- reduce:
+
+	reduce todos los elementos a un solo elemento usando la función pasada.
+
+
+- toArray:
+
+	devuelve una matriz con los elementos del flujo.
+
+

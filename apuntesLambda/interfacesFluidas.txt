@@ -1,0 +1,15 @@
+
+Supplier<List<String>> vago =() -> Arrays.asList("Paloma","Rubén",“Andrés","Pedro","Ana");
+
+// Supplier<List<String>>
+	vago.get()
+	.stream()
+
+// Predicate<String> 
+	.filter(in -> in.startsWith("A"))
+
+// Function<String, String>
+	.map(String::toUpperCase)
+
+// Consumer<String>
+	.forEach(System.out::println);

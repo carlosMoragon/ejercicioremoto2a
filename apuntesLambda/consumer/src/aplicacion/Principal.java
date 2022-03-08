@@ -2,19 +2,13 @@ package aplicacion;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
-
+import java.util.function.Supplier;
+import java.util.Arrays;
 public class Principal{
 	public static void main(String[] args){
 		//Práctica de consumer
 
-		ArrayList<Double> lista = new ArrayList<>();
-
-		lista.add(8.0);
-		lista.add(87.0);
-		lista.add(3.0);
-		lista.add(17.2);
-		lista.add(9.102);
-		lista.add(0.9);
+		SupplierArrayList<Double> lista = () -> Arrays.asList(9.2,8.4,23.4);
 		/*
 		   for(int i = 0; i < 10; i++){
 		   double x = Math.random()*100;
@@ -25,20 +19,26 @@ public class Principal{
 		//El metodo .set() permite sustituir el miembro de una lista
 
 		//Consumer<La clase del tipo que queremos aplicar la acción> nombre = "Expresion lambda"
-		Consumer<ArrayList<Double>> sqrtConsumer = list -> {
+		//Consumer<ArrayList<Double>> sqrtConsumer = list -> list.forEach(x -> Math.sqrt(x));
 		/*	for(int i = 0; i <lista.size(); i++){
 				lista.set(i, Math.sqrt(lista.get(i)));
 			}*/
-			return list.forEach(x -> Math.sqrt(x));
-		};
+/*
 
+		Consumer<ArrayList<Double>>sqrtConsumer.apply(lista);
+		print.apply(lista);
 
-		Consumer<ArrayList<Double>> print = list -> list.forEach(x -> System.out.println(x));
+		Consumer<ArrayList<Double>> print = list -> list.forEach(System.out::println);
 
 //		sqrtConsumer(lista);
 //		print(sqrtConsumer(lista));
-		sqrtConsumer.apply(lista);
-		print.apply(lista);
-
+		
+*/
+		ArrayList<Double> list = lista
+			.stream()
+			.map(x -> Math.sqrt(x))
+			//.forEach( x -> Math.sqrt(x))
+			.forEach(System.out::println);
+		
 	}
 }

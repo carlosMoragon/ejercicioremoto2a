@@ -1,0 +1,102 @@
+		  Conceptos:
+		  	
+		  	- Función:
+		  		Bloque de sentencias que ejecutan una tarea concreta.
+		  		Toman datos, los procesan y devuelven un resultado.
+		  		Funciones puras: sin efecto lateral.
+		 
+			- Composición:
+		 		Permiten combinar funciones.
+		 
+		 	- Interfaces fluidas:
+		 		Están definidas para imitar un lenguaje especifico(se parece al lenguaje natural)
+		 		Mediante encadenar metodos
+		 		Ejemplo:
+		 			List<Integer> jubilados = lista		
+					.stream() //crea un flujo de datos
+                			.filter(p -> p.jubilado())  //filtra el flujo de datos obteniendo los jubilados
+			                .map(p -> p.getNombre())    //obtinene de ese filtrados los nombres
+			                .collect(Collectors.toList());  //convierte el listado de nombres en una lista
+			                jubilados.forEach(System.out::println); //va filtrando los elementos de la lista
+		 	
+		 	- Evaluación ansiosa vs perezosa:
+		 		- Ansiosa:
+		 			Las expresiones se evalúan tan pronto como se encuentran.
+		 
+		 		- Perezosa:
+		 			Evalúan las expresiones hasta encontrar un método terminal.
+		 
+		 	- Extructura de datos persistentes:
+		 		Para mantener inmutables las estructuras, cuando operas operas sobre una 'copia' de la estructura
+		 
+		 	- Recursión:
+		 		Metodos que se invocan a si mismo
+		 
+		 	- Paralelismo:
+		 		Java proporciona metodos para declarar flujos paralelos
+		 
+		 	- Optionals:
+		 		Una funcion es de tipo optionals si a veces retorna algo y otras veces no.
+		 		
+
+		Tipo de Funciones:
+			- Funciones de primera clase:
+				Toman y devuelven argumentos de clases de entidad
+		
+			- Funciones predicado:
+				Tenemos distintos metodos:
+					and()
+					or()
+					negate()
+		
+			- Composicion de funciones:
+				Metodos:
+					compose
+					andThen
+		
+		Metodos de flujos:
+			Reduce:
+				Consiste en reducir un stream (Un flujo) a un solo valor.
+				Hay algunos ya implementado
+		
+			Map:
+				Transforma los elementos de un flujo.
+		
+			Filter:
+				Filtrar los elementos de un stream. Su condicion es un predicado.
+		
+			Sorted:
+				(Es como sort para los flujos)
+				Es un comparador (Para ordenar un flujo)
+		
+				EN la clase Comparator tienes:
+					naturalOrder()	//Orden alfabetico
+					reverseOrder() //Orden alfabetico a la inversa Z - A
+		
+			Distinct:
+				Eliminar elementos repetidos
+		
+			Collect:
+				Permite guardar el stream como una coleccion.
+		
+
+		Métodos terminales:
+			anyMatch : devuelve V
+			allMatch
+			noneMAtch
+			collect
+			count
+			findAny
+			findFirst
+			forEach
+			toArray
+			.
+			.
+			.
+			(Lo tienes en la presentacion)
+		
+		Stream Infinitos:
+			Generar Streams segun una secuencia dada:
+				Stream<Integer> iteateStream = Stream.iterate(0, x -> x + 1);
+			Para limitar el numero de elementos a 'n':
+				iterateStream.limit(n).forEach(System.out::println);

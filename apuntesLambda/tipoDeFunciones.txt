@@ -1,0 +1,35 @@
+Funciones:
+
+	- Funciones de primera clase: (LAS DE TODA LA VIDA)
+		- Toman y devuelven argumentos de clases de entidad. 
+	
+	- Funciones de orden superior:
+		- Toman como argumento o devuelven funciones.
+	
+	- Funciones puras:
+		Siempre devuelven el mismo resultado para los mismos argumentos y no realizan operaciones de entrada/salida.
+
+	- Predicados:
+		- metodos:
+			and()
+			or()
+			negate()
+		- Ejemplo:
+			Predicate<T> nombre = predicado.and(predicado);
+	
+	- Composición de funciones:
+		- metodos:
+			compose()
+			andThen()
+
+		- Ejemplo:
+			//Aquí hace primero fun1 después fun2 y después fun3
+			Boolean result = fun3.compose(fun2.compose(fun1)).apply(start);
+
+			//andThen es el contrario de compose
+			//Aquí hace primero func1, después func2, y por último func3
+			Boolean result = func1.andThen(func2).andThen(func3).apply(start); 
+
+
+			
+			
