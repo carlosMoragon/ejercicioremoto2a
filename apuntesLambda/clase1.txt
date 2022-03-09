@@ -95,6 +95,10 @@ APUNTES CLASE 1 DE EXPRESIONES LAMBDA:
 			Ejemplo:
 				s -> s.length() < 5
 			import java.util.function.Predicate;
+
+			- Enlace a una página que explica los métodos de Predicate<T>:
+
+				https://www.geeksforgeeks.org/java-util-function-doublepredicate-interface-in-java-with-examples/
 		
 		UnaryOperator(T -> T):
 			import java.util.function.UnaryOperator;
