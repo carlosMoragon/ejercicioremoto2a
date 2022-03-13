@@ -11,7 +11,7 @@ public class Principal{
 		lista.clear();
 		System.out.println(potencia(2, 3, lista));
 		lista.clear();
-		System.out.println(media(15,()-> Math.random()*100, new ArrayList<Supplier<Integer>>()));
+		System.out.println(media(15.0,()-> Math.random()*100, new ArrayList<Supplier<Integer>>()));
 		lista.clear();
 		
 	}

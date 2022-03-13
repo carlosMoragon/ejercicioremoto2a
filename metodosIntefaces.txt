@@ -1,0 +1,22 @@
+Métodos de las Intefaces funcionales:
+
+//No estan todos los metodos /_!_\
+
+	- Supplier<T>:
+		.get()
+	
+	- Consumer<T>:
+		.accept()
+
+	- Function<T,T>:
+		.apply()
+
+	- Predicate<T>:
+		.test()
+
+	- UnaryOperator<T>:
+
+
+	- BinaryOperator<T>:
+
+		.apply()

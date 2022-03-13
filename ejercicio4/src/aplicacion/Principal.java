@@ -4,10 +4,10 @@ import java.util.stream.LongStream;
 public class Principal{
 	public static void main(String[] args){
 		Consumer<Double> print = System.out::println;
-		print.accept(integralExCuadrado(0, 8, 0.1));
+		print.accept(integralEXCuadrado(0, 8, 0.1));
 	}
 
-	double integralEXCuadrado(double limInf, double limSup, double h){
+	static double integralEXCuadrado(double limInf, double limSup, double h){
 		Predicate<Double> primera = x -> x == limSup;
 
 		Function<Long, Long> factorial = x -> {
