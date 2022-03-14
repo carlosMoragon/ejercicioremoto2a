@@ -11,7 +11,7 @@ public class Principal{
 		lista.clear();
 		System.out.println(potencia(2, 3, lista));
 		lista.clear();
-		System.out.println(media(15.0,()-> Math.random()*100, new ArrayList<Supplier<Integer>>()));
+		System.out.println(media(15,()-> Math.random()*100, new ArrayList<Supplier<Double>>()));
 		lista.clear();
 		
 	}
@@ -64,7 +64,7 @@ public class Principal{
 		return lista.stream().reduce(1,(x,y) -> x * y);
 	}
 
-	public static int media(int n, Supplier<Integer> s, ArrayList<Supplier<Integer>> lista){
+	public static double media(int n, Supplier<Double> s, ArrayList<Supplier<Double>> lista){
 		/*
 		//generando una lista de numeros aleatorios
 		Interfaz lista1 = x -> {
@@ -83,7 +83,7 @@ public class Principal{
 		for(int i = 0; i<= n; i++){
 			lista.add(s);
 		}
-		int media = lista.stream().reduce(0,(x,y) -> x + y);
+		double media = lista.stream().reduce(0,Double::sum);
 		return media/lista.size();
 
 	}

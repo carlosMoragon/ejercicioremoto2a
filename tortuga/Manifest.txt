@@ -1,2 +1,3 @@
 Main-Class: aplicacion.CurvasC
+Class-Path: lib/jacm-jtf.jar
 
