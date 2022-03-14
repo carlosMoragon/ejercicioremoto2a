@@ -1,0 +1,7 @@
+Información sobre el estado de los archivos:
+
+	- claseStream_102:
+		- Contiene la clase del 14/03/2022, sobre la clase Stream. Impartida por Mariano y Álvaro, en la 102.
+		- Está comentado, y acabado. 
+	
+	- 
