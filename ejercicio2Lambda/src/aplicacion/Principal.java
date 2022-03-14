@@ -2,6 +2,8 @@ package aplicacion;
 import java.util.ArrayList;
 import interfaz.Interfaz;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
+
 public class Principal{
 	public static void main(String[] args){
 		ArrayList<Integer> lista = new ArrayList<>();
@@ -83,13 +85,12 @@ public class Principal{
 		for(int i = 0; i<= n; i++){
 			lista.add(s);
 		}
-		double media = lista.stream().reduce(0,Double::sum);
-		return media/lista.size();
+	//	double media = lista.stream().reduce(0,Double::sum);
+		//return media/lista.size();
 
 	}
 
 	public static int desviacion(ArrayList<Integer> lista){
-	//	Interfaz lista1 = x -
 		return 0;
 	}
 }
