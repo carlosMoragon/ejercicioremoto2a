@@ -13,10 +13,12 @@ Métodos de las Intefaces funcionales:
 
 	- Predicate<T>:
 		.test()
-
+		//.and()
+		// .or()
+		// .negative() -----> Esta no estoy seguro
 	- UnaryOperator<T>:
-
-
+		.apply()
+		
 	- BinaryOperator<T>:
 
 		.apply()
