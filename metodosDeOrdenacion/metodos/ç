@@ -1,0 +1,24 @@
+package aplicacion;
+import java.util.function.*;
+import java.util.List;
+import java.util.Arrays;
+public class Principal{
+	Function<List<Integer>, List<Integer>> burbuja = x -> {
+		for(int i = 0; i<x.size() - 1; i++){
+                        if(x.get(i)> x.get(i+1)){
+                                int valor0 = lista.get(i);
+                                int valor1 = lista.get(i+1);
+                                x.add(i, valor1);
+                                x.add(i+1, valor0);
+                        }
+                }
+                return x;
+	};
+	public static void main(String[] args){
+		Supplier<List<Integer>> lista = () -> Arrays.asList(2,5,23,3,9,12,43,64,62);
+//		int[] lista = {2,5,23,3,9,12,43,64,62};
+//		Consumer<Integer[]> print = x -> lista.get().stream().forEach(System.out::println);
+
+		burbuja.apply(lista.get()).stream().forEach(System.out::println);
+	}
+}
