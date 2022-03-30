@@ -9,15 +9,23 @@ public class Principal{
 
 		/* INFORMACIÓN DE COMO VA CADA METODO
 		 *
-		 * BIEN: desordenar, burbuja
+		 * TERMINADO: 
+		 *	Ordenación:
+		 * 		- desordenar, burbuja, insercionDirecta,
+		 * 	Búsqueda:
+		 * 		- busquedaLineal,
 		 *
-		 * seleccionDirecta: Me cambia un 16 por un 0
+		 * EN PROCESO:
+		 * 	- seleccionDirecta: Me cambia un 16 por un 0
 		 *
 		 *
 		 */
+		
 
+		//Creación de una List<Integer> mediante Supplier
 		Supplier<List<Integer>> lista = () -> Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
-
+		
+		//desordenar una List<Integer>
 		Consumer<List<Integer>> desordenar = x -> {
 			int valor = 0;
 			int indice = 0;
@@ -32,6 +40,7 @@ public class Principal{
 			System.out.println("-------------------------------------");
 		};
 
+		//Algoritmo de ordenación burbuja
 		Function<List<Integer>, List<Integer>> burbuja = x -> {
 			for(int i = 1; i<x.size(); i++){
 				for(int j = x.size() - 1; j >= i; j--){
@@ -45,6 +54,7 @@ public class Principal{
 			return x;
 		};
 
+		//Algoritmo de ordenación seleccionDirecta
 		Function<List<Integer>, List<Integer>> seleccionDirecta = x -> {
 			int menor = 0;
 			for(int i = 0; i<x.size(); i++){
@@ -60,208 +70,49 @@ public class Principal{
 			return x;
 		};
 
-
+		//Algoritmo de ordenación inserccionDirecta
 		Function<List<Integer>, List<Integer>> inserccionDirecta = x -> {
 			int carta = 0;
+			int j = 0;
 			for(int i = 1; i<x.size(); i++){
 				carta = x.get(i);
-				int j = i -1;
+				j = i -1;
 				while(j>= 0 && x.get(j) > carta){
 					x.set(j+1, x.get(j));
 					j--;
 				}
-				x.get(j + 1) = carta;
+				x.set(j+1, carta);
 			}
-			return carta;
+			return x;
 		};
 
-		desordenar.accept(lista.get());
-		//burbuja.apply(lista.get()).stream().forEach(System.out::println);
-		//seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
-		inserccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
+		// ORDENACIÓN:
+		
+		 //desordenar.accept(lista.get());
+		 //burbuja.apply(lista.get()).stream().forEach(System.out::println);
+		 //seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
+		 //inserccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
+		 //
+		
+		//algoritmo de busquedaLineal en una List<Integer>
+		BiFunction<List<Integer>, Integer, Integer> busquedaLineal = (x,y) -> {
+			for(int i = 0; i<x.size(); i++){
+				if(x.get(i) == y){
+					return i;
+				}
+			}
+			return -INT_MAX;
+		};
+
+		// BÚSQUEDA:
+		 
+		//System.out.println(args[0] + " esta en la posicion: " + busquedaLineal.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
+		
+		//
 
 	}
 }
 //-----------------------------------------------------------------------------------------------------------------
-/*Function<long[], long[]> InserccionDirecta = L -> {
-	for(int i = i; i < L.length; i++){
-		long carta = L[i];
-		int j = i-1;
-		while(j>= 0 && L[j] > carta){
-			L[j + 1] = L[j];
-			j--;
-		}
-		L[j + 1] = carta;
-	}
-	return carta;
-};*/
-
-/*Function<List<Integer>, List<Integer>> seleccionDirecta = x -> {
-  int menor = 0;
-  for(int n = 0; n <x.size(); n++){
-  menor = x.get(x.size() - 1);
-  for(int i = x.size() -1; i >= n; i--){
-  if(x.get(i) < menor && i != x.size() - 1){
-  menor = x.get(i);
-  }else if(i == x.size() - 1){
-  x.set(i, menor);
-  }
-  }
-  }
-  return x;
-  };
-
-  burbuja.apply(lista.get()).stream().forEach(System.out::println);
-  desordenar.accept(lista.get());
-  seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);*/
-
-
-
-/*	int tamanno = Integer.parseInt(args[0]);
-	List<Integer> lista2 = new ArrayList<>();
-
-	BinaryOperator<Integer> mayorQue = (x,y) ->{
-	if(x > y){
-	return x;
-	}else{
-	return y;
-	}
-	};
-
-	Consumer<List<Integer>> addTo = x -> {
-	System.out.println("Esta es la lista inicial, ordenada");
-	for(int i = 0; i< tamanno; i++){
-	x.add(i + 1);
-	System.out.println(x.get(i));
-	}
-	System.out.println("-------------------------------------");
-	};
-
-	Consumer<List<Integer>> desordenar = x -> {
-	int valor = 0;
-	int indice = 0;
-	for(int i = 0; i <x.size(); i++){
-	indice =  (int)(Math.random()*x.size() -1);
-	valor = x.get(i);
-	x.set(i,x.get(indice));
-	x.set(indice,valor);
-	}
-	System.out.println("lista desordenada");
-	x.stream().forEach(System.out::println);
-	System.out.println("-------------------------------------");
-
-	};
-
-	Function<List<Integer>,Integer[]> ordenar = x -> {
-	Integer[] listaFinal = new Integer[tamanno];
-	int mayor = 0;
-	for(int i = 0; i < x.size() -1; i++){
-	for(int j = x.size() - 1; j > 0; j --){
-	mayor = mayorQue.apply(x.get(j), x.get(j - 1));
-	if(j == x.size() - 2){
-	listaFinal[x.size() - 1] = mayor;
-	x.remove(x.get(j));
-	}
-	}
-	}
-
-	return listaFinal;
-	};
-
-	addTo.accept(lista2);
-	desordenar.accept(lista2);
-	System.out.println("lista ordenada");
-	Arrays.stream(ordenar.apply(lista2)).forEach(System.out::println);*/
-
-
-
-
-
-/*		Consumer<Integer[]> lista2a = x ->{
-		for(int i = 0; i < x.length; i++){
-		x[i] = i + 1;
-		}
-
-		for(int i = 0; i < x.length; i++){
-		int a = (int) (Math.random() * x.length - 1);
-		int b = (int) (Math.random() * x.length - 1);
-		int valor0 = x[a];
-		x[a] = x[b];
-		x[b] = valor0;
-		}
-		};
-
-
-
-		Function<Integer[], Integer[]> burbujaa = x -> {
-		for(int i = 0; i<x.length - 1; i++){
-		if(x[i] > x[i+1]){
-		int valor0 = x[i];
-		x[i] = x[i+1];
-		x[i+1] = valor0;
-		}
-		}
-		return x;
-		};
-
-		lista2a.accept(lista2);
-
-		Integer[] ordenado = burbujaa.apply(lista2);
-
-		Function<Integer[], String> resultado = x -> {
-		StringBuilder output = new StringBuilder();
-		for(int i = 0; i< x.length; i++){
-		output.append(x[i] + "\n");
-		}
-		return output.toString();
-		};
-
-
-		System.out.println(resultado.apply(ordenado));
-
-
-		System.out.println("-----------------------------------------");
-		System.out.println("-----------------------------------------");
-		*/
-
-
-//		Supplier<List<Integer>> lista = () -> Arrays.asList(2,5,23,3,9,12,43,64,62);
-
-/*		Consumer<List<Integer>> desordenar = x -> {
-		int valor = 0;
-		int indice = 0;
-		for(int i = 0; i <x.size(); i++){
-		indice =  (int)(Math.random()*(x.size() -1));
-		valor = x.get(i);
-		x.set(i,x.get(indice));
-		x.set(indice,valor);
-		}
-		System.out.println("-------------------------------------");
-		System.out.println("lista desordenada");
-		x.stream().forEach(System.out::println);
-		System.out.println("-------------------------------------");
-		};
-		*/
-/*
-   Function<List<Integer>, List<Integer>> seleccionDirecta = x -> {
-   int menor = 0;
-   for(int n = 0; n <x.size(); n++){
-   menor = x.get(x.size() - 1);
-   for(int i = x.size() -1; i >= n; i--){
-   if(x.get(i) < menor && i != x.size() - 1){
-   menor = x.get(i);
-   }else if(i == x.size() - 1){
-   x.set(i, menor);
-   }
-   }
-   }
-   return x;
-   };
-
-   burbuja.apply(lista.get()).stream().forEach(System.out::println);
-   desordenar.accept(lista.get());
-   seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
-   */
 
 /*		BiFunction<List<Integer>, Integer, Integer> busquedaBinaria = (x,y) -> {
 		int izq = 0;
