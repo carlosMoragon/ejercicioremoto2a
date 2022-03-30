@@ -116,6 +116,21 @@ public class Principal{
 
 		Supplier<List<Integer>> lista = () -> Arrays.asList(2,5,23,3,9,12,43,64,62);
 
+		/*		Consumer<List<Integer>> desordenar = x -> {
+				int valor = 0;
+				int indice = 0;
+				for(int i = 0; i <x.size(); i++){
+				indice =  (int)(Math.random()*(x.size() -1));
+				valor = x.get(i);
+				x.set(i,x.get(indice));
+				x.set(indice,valor);
+				}
+				System.out.println("-------------------------------------");
+				System.out.println("lista desordenada");
+				x.stream().forEach(System.out::println);
+				System.out.println("-------------------------------------");
+				};
+				*/
 		Function<List<Integer>, List<Integer>> burbuja = x -> {
 			for(int i = 1; i<x.size(); i++){
 				for(int j = x.size() - 1; j >= i; j--){
@@ -129,41 +144,45 @@ public class Principal{
 			return x;
 		};
 
+		/*
+		   Function<List<Integer>, List<Integer>> seleccionDirecta = x -> {
+		   int menor = 0;
+		   for(int n = 0; n <x.size(); n++){
+		   menor = x.get(x.size() - 1);
+		   for(int i = x.size() -1; i >= n; i--){
+		   if(x.get(i) < menor && i != x.size() - 1){
+		   menor = x.get(i);
+		   }else if(i == x.size() - 1){
+		   x.set(i, menor);
+		   }
+		   }
+		   }
+		   return x;
+		   };
 
-		Function<List<Integer>, List<Integer>> seleccionDirecta = x -> {
-			int menor = x.get(0);
-			for(int n = 1; n <x.size(); n++){
-				for(int i = x.size() -1; i >= n; i--){
-					if(x.get(i) < menor && i != x.size() - 1){
-						menor = x.get(i);
-					}else if(i == x.size() - 1){
-						x.set(i, menor);
-						menor = 1000000;
-					}
+		   burbuja.apply(lista.get()).stream().forEach(System.out::println);
+		   desordenar.accept(lista.get());
+		   seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
+		   */
+
+		BiFunction<List<Integer>, Integer, Integer> busquedaBinaria = (x,y) -> {
+			int izq = 0;
+			int der = x.size()-1;
+			int mid = 0;
+			while(izq <= der){
+				mid = (izq + der)/2;
+				if(x.get(mid) - y < 0){
+					izq = mid + 1;
+				}else if(x.get(mid) - y > 0){
+					der = mid - 1;
+				}else{
+					return mid;
 				}
 			}
-			return x;
+			return -1;
 		};
-
-		Consumer<List<Integer>> desordenar = x -> {
-			int valor = 0;
-			int indice = 0;
-			for(int i = 0; i <x.size(); i++){
-				indice =  (int)(Math.random()*x.size() -1);
-				valor = x.get(i);
-				x.set(i,x.get(indice));
-				x.set(indice,valor);
-			}
-			System.out.println("lista desordenada");
-			x.stream().forEach(System.out::println);
-			System.out.println("-------------------------------------");
-		};
-
-		burbuja.apply(lista.get()).stream().forEach(System.out::println);
-		desordenar.accept(lista.get());
-		seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
-
-
+		burbuja.apply(lista.get());
+		System.out.println(busquedaBinaria.apply(lista.get(),lista.get().get(2)));
 		/*		Integer[] lista = new Integer[Integer.parseInt(args[0])];
 
 				Consumer<Integer[]> add = x ->{
@@ -175,28 +194,28 @@ public class Principal{
 		//En una busqueda tiene 2 argumentos, el array y el elemento que estoy buscando
 		/*BiFunction<Integer[], Integer, Integer> busquedaLineal = (x,y) -> {
 
-			for(int i = 0; i < x.length; i++){
-				if(x[i] == y){
-					return i;
-				}
-			}
+		  for(int i = 0; i < x.length; i++){
+		  if(x[i] == y){
+		  return i;
+		  }
+		  }
 
-			return -1;
+		  return -1;
+
+		  };
+		  BiFunction<Integer[], Integer, Integer> busquedaLineal2 = (x,y) -> {
+		  int i = 0;
+		  while(i < x.length && x[i] != y){
+		  i++;
+		  }
+
+		  return i < x.length && x[i] == y ? i: -INT_MAX;
+		//puedo salir del bucle saliendose del array i o encontrando el valor, para filtrarlo  ponemos una condicion.
+		//si i< x.length y x[i] = y entonces devuelve i, si no devuelve lo de la derecha: -INT_MAX
+		//Es lo mismo que: if(i<x.length && x[i] == y){ return i;}else{return -INT_MAX;}
+
 
 		};
-		BiFunction<Integer[], Integer, Integer> busquedaLineal2 = (x,y) -> {
-			int i = 0;
-			while(i < x.length && x[i] != y){
-				i++;
-			}
-			
-			 return i < x.length && x[i] == y ? i: -INT_MAX;
-			 //puedo salir del bucle saliendose del array i o encontrando el valor, para filtrarlo  ponemos una condicion.
-			 //si i< x.length y x[i] = y entonces devuelve i, si no devuelve lo de la derecha: -INT_MAX
-			 //Es lo mismo que: if(i<x.length && x[i] == y){ return i;}else{return -INT_MAX;}
-
-
-                };
 		int numero = Integer.parseInt(args[0]);
 		add.accept(lista);
 		System.out.println(busquedaLineal.apply(lista, numero));*/
