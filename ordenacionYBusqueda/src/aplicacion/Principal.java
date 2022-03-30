@@ -1,4 +1,5 @@
 package aplicacion;
+import java.util.stream.Collectors;
 import java.util.function.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -152,6 +153,20 @@ public class Principal{
 
 		//System.out.println(args[0] + " esta en la posicion: " + busquedaBinaria.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
 
+
+//-----------------------------------------------------------------------------------------------------------------
+
+
+//PRACTICA:
+	Supplier<List<Integer>> lista2 = () -> Arrays.asList(1,2,2,5,6,4,7,3,6,75);
+		Function<List<Integer>, List<Integer>> mergesort = x -> {
+			x = x.stream().distinct().collect(Collectors.toList());
+			
+			
+			return x;
+		};
+
+		mergesort.apply(lista2.get()).stream().forEach(System.out::println);
+
 	}
 }
-//-----------------------------------------------------------------------------------------------------------------
