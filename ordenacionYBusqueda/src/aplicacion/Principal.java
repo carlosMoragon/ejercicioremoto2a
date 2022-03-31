@@ -1,5 +1,4 @@
 package aplicacion;
-import java.util.stream.Collectors;
 import java.util.function.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class Principal{
 		 *	Ordenación:
 		 * 		- desordenar, burbuja, insercionDirecta,
 		 * 	Búsqueda:
-		 * 		- busquedaLineal, busquedaLineal2, busquedaBinaria
+		 * 		- busquedaLineal,
 		 *
 		 * EN PROCESO:
 		 * 	- seleccionDirecta: Me cambia un 16 por un 0
@@ -87,8 +86,6 @@ public class Principal{
 			return x;
 		};
 
-
-
 		// ORDENACIÓN:
 
 		//desordenar.accept(lista.get());
@@ -96,8 +93,6 @@ public class Principal{
 		//seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
 		//inserccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
 		//
-
-
 
 		//algoritmo de busquedaLineal en una List<Integer>
 		BiFunction<List<Integer>, Integer, Integer> busquedaLineal = (x,y) -> {
@@ -108,31 +103,20 @@ public class Principal{
 			}
 			return -INT_MAX;
 		};
-		
-		//Algoritmo de busquedaLineal en una List<Integer>
-		BiFunction<List<Integer>, Integer, Integer> busquedaLineal2 = (x,y) -> {
+
+		BiFunction<Integer[], Integer, Integer> busquedaLineal2 = (x,y) -> {
 			int i = 0;
-			while(i < x.size() && x.get(i) != y){
+			while(i < x.length && x[i] != y){
 				i++;
 			}
 
-			return i < x.size() && x.get(i) == y ? i: -INT_MAX;
+			return i < x.length && x[i] == y ? i: -INT_MAX;
 		};
-
-		/* EXPLICACIÓN (busquedaLineal2):
-		 *
-		 * puedo salir del bucle saliendose del array i o encontrando el valor, para filtrarlo  ponemos una condicion.
-		 * si i< x.length y x[i] = y entonces devuelve i, si no devuelve lo de la derecha: -INT_MAX
-		 * Es lo mismo que: if(i<x.length && x[i] == y){ return i;}else{return -INT_MAX;}
-		 */
-
-
-		//Algoritmo de busquedaBinaria en una List<Integer>
 		BiFunction<List<Integer>, Integer, Integer> busquedaBinaria = (x,y) -> {
 			int izq = 0;
 			int der = x.size()-1;
 			int mid = 0;
-			while(izq <= der){
+			while(izq<= der){
 				mid = (der - izq)/2;
 				if(x.get(mid) < y){
 					izq = mid + 1;
@@ -148,25 +132,125 @@ public class Principal{
 		// BÚSQUEDA:
 
 		//System.out.println(args[0] + " esta en la posicion: " + busquedaLineal.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
-		
-		//System.out.println(args[0] + " esta en la posicion: " + busquedaLineal2.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
 
-		//System.out.println(args[0] + " esta en la posicion: " + busquedaBinaria.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
+		System.out.println(args[0] + " esta en la posicion: " + busquedaBinaria.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
 
+ 		Comsumer<List<Integer>> ordenarInsDir= x -> {
+                        int carta = 0;
+                        int j = 0;
+                        for(int i = 1; i<x.size(); i++){
+                                carta = x.get(i);
+                                j = i -1;
+                                while(j>= 0 && x.get(j) > carta){
+                                        x.set(j+1, x.get(j));
+                                        j--;
+                                }
+                                x.set(j+1, carta);
+                        }
+                };
 
-//-----------------------------------------------------------------------------------------------------------------
+		Function<List<Integer>, List<Integer>> merge = x -> {
+			List<Integer> izq = x.subList(0, x.size()/2);
+			List<Integer> der = x.subList(x.size()/2, x.size());
+			ordenarInsDir.accept(izq);
+			ordenarInsDir.accept(der);
+			x.clear();
+			for(int i = 0; i< izq.size(); i++){
+				for(int j = 0; j< der.size(); j++){
+					if(izq.get(i) < der.get(j)){
+						x.add(izq.get(i));
+						
+					}else if(izq.get(i) == der.get(j)){
+						x.add(izq.get(i));
+						der.remove(j);
+					}else{
+						x.add(izq.get(i));
+						
+					
+					}
+				}
+			}
 
-
-//PRACTICA:
-	Supplier<List<Integer>> lista2 = () -> Arrays.asList(1,2,2,5,6,4,7,3,6,75);
-		Function<List<Integer>, List<Integer>> mergesort = x -> {
-			x = x.stream().distinct().collect(Collectors.toList());
-			
-			
-			return x;
 		};
-
-		mergesort.apply(lista2.get()).stream().forEach(System.out::println);
 
 	}
 }
+//-----------------------------------------------------------------------------------------------------------------
+
+/*		BiFunction<List<Integer>, Integer, Integer> busquedaBinaria = (x,y) -> {
+		int izq = 0;
+		int der = x.size()-1;
+		int mid = 0;
+		while(izq <= der){
+		mid = (izq + der)/2;
+		if(x.get(mid) - y < 0){
+		izq = mid + 1;
+		}else if(x.get(mid) - y > 0){
+		der = mid - 1;
+		}else{
+		return mid;
+		}
+		}
+		return -1;
+		};
+		burbuja.apply(lista.get());
+		System.out.println(busquedaBinaria.apply(lista.get(),lista.get().get(2)));*/
+/*		Integer[] lista = new Integer[Integer.parseInt(args[0])];
+
+		Consumer<Integer[]> add = x ->{
+		for(int i = 0; i<x.length; i++){
+		x[i] = i+1;
+		}
+		};
+		*/
+//En una busqueda tiene 2 argumentos, el array y el elemento que estoy buscando
+/*BiFunction<Integer[], Integer, Integer> busquedaLineal = (x,y) -> {
+
+  for(int i = 0; i < x.length; i++){
+  if(x[i] == y){
+  return i;
+  }
+  }
+
+  return -1;
+
+  };
+  BiFunction<Integer[], Integer, Integer> busquedaLineal2 = (x,y) -> {
+  int i = 0;
+  while(i < x.length && x[i] != y){
+  i++;
+  }
+
+  return i < x.length && x[i] == y ? i: -INT_MAX;
+//puedo salir del bucle saliendose del array i o encontrando el valor, para filtrarlo  ponemos una condicion.
+//si i< x.length y x[i] = y entonces devuelve i, si no devuelve lo de la derecha: -INT_MAX
+//Es lo mismo que: if(i<x.length && x[i] == y){ return i;}else{return -INT_MAX;}
+
+
+};
+int numero = Integer.parseInt(args[0]);
+add.accept(lista);
+System.out.println(busquedaLineal.apply(lista, numero));*/
+
+
+//Hecho por JUan cordero
+/*Function<long[], long[]> InserccionDirecta = L -> {
+  for(int i = i; i < L.length; i++){
+  long carta = L[i];
+  int j = i-1;
+  while(j>= 0 && L[j] > carta){
+  L[j + 1] = L[j];
+  j--;
+  }
+  L[j + 1] = carta;
+  }
+  return carta;
+  };*/
+
+
+//		burbuja.apply(lista.get()).stream().forEach(System.out::println);
+//		System.out.println("----------------------------------");
+//		seleccionDirecta.apply(lista.get()).stream().forEach(System.out::println);
+
+//	}
+//}
