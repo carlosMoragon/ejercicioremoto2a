@@ -14,10 +14,11 @@ public class Principal{
 		 *	Ordenación:
 		 * 		- desordenar, burbuja, insercionDirecta,
 		 * 	Búsqueda:
-		 * 		- busquedaLineal,
+		 * 		- busquedaLineal,busquedaLineal2, busquedaBinaria
 		 *
 		 * EN PROCESO:
 		 * 	- seleccionDirecta: Me cambia un 16 por un 0
+		 * 	-mergeSort: Me repite numeros 
 		 *
 		 *
 		 */
