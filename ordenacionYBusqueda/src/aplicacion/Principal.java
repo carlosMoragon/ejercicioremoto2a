@@ -3,6 +3,7 @@ import java.util.function.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 public class Principal{
 	static final int INT_MAX = 2147483647;
 	public static void main(String[] args){
@@ -24,6 +25,14 @@ public class Principal{
 
 		//Creación de una List<Integer> mediante Supplier
 		Supplier<List<Integer>> lista = () -> Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+		List<Integer> lista2 = new ArrayList<>();
+
+		Consumer<List<Integer>> addElementos = x -> {
+			for(int i = 0; i < 10; i++){
+				x.add((int)(Math.random()*100) + 1);
+			}
+			x = x.stream().distinct().collect(Collectors.toList());
+		};
 
 		//desordenar una List<Integer>
 		Consumer<List<Integer>> desordenar = x -> {
@@ -133,9 +142,9 @@ public class Principal{
 
 		//System.out.println(args[0] + " esta en la posicion: " + busquedaLineal.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
 
-		System.out.println(args[0] + " esta en la posicion: " + busquedaBinaria.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
+		//System.out.println(args[0] + " esta en la posicion: " + busquedaBinaria.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
 
- 		Comsumer<List<Integer>> ordenarInsDir= x -> {
+ 		Consumer<List<Integer>> ordenarInsDir= x -> {
                         int carta = 0;
                         int j = 0;
                         for(int i = 1; i<x.size(); i++){
@@ -149,29 +158,38 @@ public class Principal{
                         }
                 };
 
-		Function<List<Integer>, List<Integer>> merge = x -> {
+		Function<List<Integer>, List<Integer>> mergeSort = x -> {
 			List<Integer> izq = x.subList(0, x.size()/2);
 			List<Integer> der = x.subList(x.size()/2, x.size());
 			ordenarInsDir.accept(izq);
 			ordenarInsDir.accept(der);
-			x.clear();
+//			int j = 0;
 			for(int i = 0; i< izq.size(); i++){
 				for(int j = 0; j< der.size(); j++){
-					if(izq.get(i) < der.get(j)){
-						x.add(izq.get(i));
-						
-					}else if(izq.get(i) == der.get(j)){
-						x.add(izq.get(i));
-						der.remove(j);
-					}else{
-						x.add(izq.get(i));
-						
-					
+//				while(j<der.size()){
+					if(izq.get(i) < der.get(j) && !x.contains(i)){
+						x.set(i, izq.get(i));
+						//der.remove(j);
+						//j++;
+					}else if(izq.get(i) == der.get(j) && !x.contains(i)){
+						x.set(i, izq.get(i));
+						//der.remove(j);
+						//j++;
+					}else if(izq.get(i) > der.get(j) && !x.contains(j)){
+						x.set(i, der.get(j));
+						//der.remove(j);
 					}
 				}
 			}
+			return x;
 
 		};
+
+		addElementos.accept(lista2);
+		System.out.println("La lista es esta:");
+		lista2.stream().forEach(System.out::println);
+		System.out.println("------------------------------------------");
+		mergeSort.apply(lista2).stream().forEach(System.out::println);
 
 	}
 }

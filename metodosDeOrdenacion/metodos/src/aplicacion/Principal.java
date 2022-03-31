@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 public class Principal{
 	public static void main(String[] args){
-
+		
 		/*	int tamanno = Integer.parseInt(args[0]);
 			List<Integer> lista2 = new ArrayList<>();
 
@@ -16,6 +16,7 @@ public class Principal{
 			return y;
 			}
 			};
+
 
 			Consumer<List<Integer>> addTo = x -> {
 			System.out.println("Esta es la lista inicial, ordenada");
