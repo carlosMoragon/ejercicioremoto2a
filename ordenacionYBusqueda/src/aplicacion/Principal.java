@@ -10,7 +10,6 @@ public class Principal {
 	public static final int INT_MAX = 2147483647;
 
 	public static void main(String[] args) {
-		Principal.args = args;
 
 		/* INFORMACIÓN DE COMO VA CADA METODO
 		 *
@@ -201,32 +200,34 @@ public class Principal {
 		//metodo recursivo quicksort
 
 		/*public static void quickSort2 (List < Integer > L,int izq, int der){
-			int pivote = L.get(izq + der / 2);
-			while (izq < der) {
+		  int pivote = L.get(izq + der / 2);
+		  while (izq < der) {
 
-				//Separacion de menores y mayores
-				if (L.get(izq) < pivote && L.get(der) > pivote) {
-					int valorIzq = L.get(izq);
-					L.set(izq, L.get(der));
-					L.set(der, valorIzq);
-					izq++;
-					der++;
-				} else if (L.get(izq) > pivote) {
-					izq++;
-				} else if (L.get(der) < pivote) {
-					der++;
-				}
-			}
+		//Separacion de menores y mayores
+		if (L.get(izq) < pivote && L.get(der) > pivote) {
+		int valorIzq = L.get(izq);
+		L.set(izq, L.get(der));
+		L.set(der, valorIzq);
+		izq++;
+		der++;
+		} else if (L.get(izq) > pivote) {
+		izq++;
+		} else if (L.get(der) < pivote) {
+		der++;
+		}
+		  }
 
-			List<Integer> listIzq = L.subList(0, der);
-			List<Integer> listDer = L.subList(izq, L.size());
-			//Ordenacion de la particion
-			ordenarInsDir.accept(listIzq);
-			ordenarInsDir.accept(listDer);
+		  List<Integer> listIzq = L.subList(0, der);
+		  List<Integer> listDer = L.subList(izq, L.size());
+		//Ordenacion de la particion
+		ordenarInsDir.accept(listIzq);
+		ordenarInsDir.accept(listDer);
 
 
 		}*/
-	}
+		desordenar.accept(lista.get());
+		quicksort(lista.get(), 0, lista.get().size());
+		  }
 
 	//Método de quicksort para ordenar una List<Integer>
 	public static void quicksort(List<Integer> L, int izq, int der) {
@@ -267,16 +268,16 @@ public class Principal {
 			quicksort(L, i, der);
 		}
 	}
-}
+	}
 
-		//cojo un elemento como pivote(cualquiera) -> muchas veces se pone el central.
-		//(3,2,5,9,8,7,6,10,4,6,3,11)
-		//Cojo el central ---> 7
-		//Izq = busco uno que sea mas grande q el pivote por la izq, me paro en el 9.
-		//der = busco un elemento q sea menor o igual que el del pivote por la derecha, me paro en el 3.
-		//ahora intercambio los elementos 9 y 3
-		//ahora avanzo y hago lo mismo busco uno menor o igual otro mayor y los intercambio
-		//cuando se cruzan los indices se hace la particion y se ordenan ambas partes
+	//cojo un elemento como pivote(cualquiera) -> muchas veces se pone el central.
+	//(3,2,5,9,8,7,6,10,4,6,3,11)
+	//Cojo el central ---> 7
+	//Izq = busco uno que sea mas grande q el pivote por la izq, me paro en el 9.
+	//der = busco un elemento q sea menor o igual que el del pivote por la derecha, me paro en el 3.
+	//ahora intercambio los elementos 9 y 3
+	//ahora avanzo y hago lo mismo busco uno menor o igual otro mayor y los intercambio
+	//cuando se cruzan los indices se hace la particion y se ordenan ambas partes
 
 
 	//-----------------------------------------------------------------------------------------------------------------
