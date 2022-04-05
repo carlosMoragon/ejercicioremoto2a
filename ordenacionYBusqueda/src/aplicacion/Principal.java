@@ -198,38 +198,74 @@ public class Principal {
 		mergeSort.apply(lista2).stream().forEach(System.out::println);*/
 
 
+		//metodo recursivo quicksort
 
-	//metodo recursivo quicksort
+		/*public static void quickSort2 (List < Integer > L,int izq, int der){
+			int pivote = L.get(izq + der / 2);
+			while (izq < der) {
 
-	public static void quickSort(List<Integer> L, int izq, int der){
-		int pivote = L.get(izq + der/2);
-		while(izq < der){
-		
-			//Separacion de menores y mayores
-			if(L.get(izq) < pivote && L.get(der) > pivote){
-				int valorIzq = L.get(izq);
-				L.set(izq, L.get(der));
-				L.set(der, valorIzq);
-				izq++;
-				der++;
-			}else if(L.get(izq) > pivote){
-				izq++;
-			}else if(L.get(der) < pivote){
-				der++;
+				//Separacion de menores y mayores
+				if (L.get(izq) < pivote && L.get(der) > pivote) {
+					int valorIzq = L.get(izq);
+					L.set(izq, L.get(der));
+					L.set(der, valorIzq);
+					izq++;
+					der++;
+				} else if (L.get(izq) > pivote) {
+					izq++;
+				} else if (L.get(der) < pivote) {
+					der++;
+				}
+			}
+
+			List<Integer> listIzq = L.subList(0, der);
+			List<Integer> listDer = L.subList(izq, L.size());
+			//Ordenacion de la particion
+			ordenarInsDir.accept(listIzq);
+			ordenarInsDir.accept(listDer);
+
+
+		}*/
+	}
+
+	//Método de quicksort para ordenar una List<Integer>
+	public static void quicksort(List<Integer> L, int izq, int der) {
+		//Creo estas variables para poder actualizar los punteros de los limites donde estamos aplicando el algoritmo
+		int i = izq;
+		int d = der;
+		//se declara el elemento pivote, el cual será la mitad de los indices izq y der
+		int pivote = L.get((izq + der) / 2);
+		//este bucle while iterara hasta que los indices se crucen
+		while (i <= d) {
+			//El siguiente while compara si el elemento que se situa a la izq es menor que el pivote
+			//si lo es, se mueve el puntero un valor a la der
+			//y vuelve a iterar, hasta encontrar un elemento mayor o igual que el pivote, el cual cambiaremos
+			while (L.get(i) < pivote) {
+				i++;
+			}
+			//El siguiente while compara si el elemento de la der es mayor al pivote
+			//Si lo es, se mueve el puntero un valor a la izq
+			//y vuelve a iterar, hasta encontrar un elemento menor o igual que el pivote, el cual intercambiaremos
+			while (L.get(d) > pivote) {
+				d--;
+			}
+
+			//teniendo ya los valores de los punteros puestos en elementos que no estan en su sitio, los intercambiamos
+			//a no ser que se hayan cruzado, lo cual significaria que ya estan los menores de la lista a la izq, y los mayores a la der
+			if (i <= d) {
+				int valor = L.get(i);
+				L.set(i, L.get(d));
+				L.set(d, valor);
+				i++;
+				d--;
 			}
 		}
-		
-		List<Integer> listIzq = L.subList(0, der);
-		List<Integer> listDer = L.subList(izq, L.size());
-		//Ordenacion de la particion
-		ordenarInsDir.accept(listIzq);
-		ordenarInsDir.accept(listDer);
-		
-			
-		//Mezclar
-		
-
-		
+		//Cuando ya se han cruzado los punteros, llamamos al metodo para ordenarlo, pero en un tramo mas pequeño
+		if (izq < d) {
+			quicksort(L, izq, d);
+		} else if (i < der) {
+			quicksort(L, i, der);
+		}
 	}
 }
 
