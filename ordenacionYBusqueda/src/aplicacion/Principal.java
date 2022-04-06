@@ -197,36 +197,9 @@ public class Principal {
 		mergeSort.apply(lista2).stream().forEach(System.out::println);*/
 
 
-		//metodo recursivo quicksort
-
-		/*public static void quickSort2 (List < Integer > L,int izq, int der){
-		  int pivote = L.get(izq + der / 2);
-		  while (izq < der) {
-
-		//Separacion de menores y mayores
-		if (L.get(izq) < pivote && L.get(der) > pivote) {
-		int valorIzq = L.get(izq);
-		L.set(izq, L.get(der));
-		L.set(der, valorIzq);
-		izq++;
-		der++;
-		} else if (L.get(izq) > pivote) {
-		izq++;
-		} else if (L.get(der) < pivote) {
-		der++;
-		}
-		  }
-
-		  List<Integer> listIzq = L.subList(0, der);
-		  List<Integer> listDer = L.subList(izq, L.size());
-		//Ordenacion de la particion
-		ordenarInsDir.accept(listIzq);
-		ordenarInsDir.accept(listDer);
-
-
-		}*/
 		desordenar.accept(lista.get());
-		quicksort(lista.get(), 0, lista.get().size());
+		quicksort(lista.get(), 0, lista.get().size()-1);
+		lista.get().stream().forEach(System.out::println);
 		  }
 
 	//Método de quicksort para ordenar una List<Integer>
