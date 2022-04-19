@@ -36,7 +36,7 @@ public class Principal {
 			for (int i = 0; i < 10; i++) {
 				x.add((int) (Math.random() * 100) + 1);
 			}
-			x = x.stream().distinct().collect(Collectors.toList());
+			
 		};
 
 		//desordenar una List<Integer>
@@ -149,7 +149,7 @@ public class Principal {
 
 		//System.out.println(args[0] + " esta en la posicion: " + busquedaBinaria.apply(lista.get(), Integer.parseInt(args[0])) + " de la lista");
 
-		/*Consumer<List<Integer>> ordenarInsDir= x -> {
+		Consumer<List<Integer>> ordenarInsDir= x -> {
 		  int carta = 0;
 		  int j = 0;
 		  for(int i = 1; i<x.size(); i++){
@@ -162,85 +162,90 @@ public class Principal {
 		  x.set(j+1, carta);
 		  }
 		  };
+		 
+		Function<List<Integer>, List<Integer>> mergeSort = x -> {
+			List<Integer> izq = x.subList(0, x.size()/2);
+			List<Integer> der = x.subList(x.size()/2, x.size());
+			ordenarInsDir.accept(izq);
+			ordenarInsDir.accept(der);
+			//			int j = 0;
+			for(int i = 0; i< izq.size(); i++){
+				for(int j = 0; j< der.size(); j++){
+					//				while(j<der.size()){
+					if(izq.get(i) < der.get(j) && !x.contains(i)){
+						x.set(i, izq.get(i));
+						j++;
+						i++;
+						//der.remove(j);
+						//j++;
+					/*}else if(izq.get(i) == der.get(j) && !x.contains(i)){
+						x.set(i, izq.get(i));
+						//der.remove(j);
+						//j++;*/
+					}else if(izq.get(i) > der.get(j) && !x.contains(j)){
+						x.set(i, der.get(j));
+						//der.remove(j);
+					}
+					}
+				}
+				return x;
+			/*List<Integer> devolver = new ArrayList<>(izq);
+			devolver.addAll(der);
+			return devolver;*/
 
-		  Function<List<Integer>, List<Integer>> mergeSort = x -> {
-		  List<Integer> izq = x.subList(0, x.size()/2);
-		  List<Integer> der = x.subList(x.size()/2, x.size());
-		  ordenarInsDir.accept(izq);
-		  ordenarInsDir.accept(der);
-		//			int j = 0;
-		for(int i = 0; i< izq.size(); i++){
-		for(int j = 0; j< der.size(); j++){
-		//				while(j<der.size()){
-		if(izq.get(i) < der.get(j) && !x.contains(i)){
-		x.set(i, izq.get(i));
-		//der.remove(j);
-		//j++;
-		}else if(izq.get(i) == der.get(j) && !x.contains(i)){
-		x.set(i, izq.get(i));
-		//der.remove(j);
-		//j++;
-		}else if(izq.get(i) > der.get(j) && !x.contains(j)){
-		x.set(i, der.get(j));
-		//der.remove(j);
+			};
+
+			addElementos.accept(lista2);
+			System.out.println("La lista es esta:");
+			lista2.stream().forEach(System.out::println);
+			System.out.println("------------------------------------------");
+			mergeSort.apply(lista2).stream().forEach(System.out::println);
+
+
+			/*desordenar.accept(lista.get());
+			quicksort(lista.get(), 0, lista.get().size()-1);
+			lista.get().stream().forEach(System.out::println);*/
 		}
-		}
-		}
-		return x;
 
-		};
+		//Método de quicksort para ordenar una List<Integer>
+		public static void quicksort(List<Integer> L, int izq, int der) {
+			//Creo estas variables para poder actualizar los punteros de los limites donde estamos aplicando el algoritmo
+			int i = izq;
+			int d = der;
+			//se declara el elemento pivote, el cual será la mitad de los indices izq y der
+			int pivote = L.get((izq + der) / 2);
+			//este bucle while iterara hasta que los indices se crucen
+			while (i <= d) {
+				//El siguiente while compara si el elemento que se situa a la izq es menor que el pivote
+				//si lo es, se mueve el puntero un valor a la der
+				//y vuelve a iterar, hasta encontrar un elemento mayor o igual que el pivote, el cual cambiaremos
+				while (L.get(i) < pivote) {
+					i++;
+				}
+				//El siguiente while compara si el elemento de la der es mayor al pivote
+				//Si lo es, se mueve el puntero un valor a la izq
+				//y vuelve a iterar, hasta encontrar un elemento menor o igual que el pivote, el cual intercambiaremos
+				while (L.get(d) > pivote) {
+					d--;
+				}
 
-		addElementos.accept(lista2);
-		System.out.println("La lista es esta:");
-		lista2.stream().forEach(System.out::println);
-		System.out.println("------------------------------------------");
-		mergeSort.apply(lista2).stream().forEach(System.out::println);*/
-
-
-		desordenar.accept(lista.get());
-		quicksort(lista.get(), 0, lista.get().size()-1);
-		lista.get().stream().forEach(System.out::println);
-		  }
-
-	//Método de quicksort para ordenar una List<Integer>
-	public static void quicksort(List<Integer> L, int izq, int der) {
-		//Creo estas variables para poder actualizar los punteros de los limites donde estamos aplicando el algoritmo
-		int i = izq;
-		int d = der;
-		//se declara el elemento pivote, el cual será la mitad de los indices izq y der
-		int pivote = L.get((izq + der) / 2);
-		//este bucle while iterara hasta que los indices se crucen
-		while (i <= d) {
-			//El siguiente while compara si el elemento que se situa a la izq es menor que el pivote
-			//si lo es, se mueve el puntero un valor a la der
-			//y vuelve a iterar, hasta encontrar un elemento mayor o igual que el pivote, el cual cambiaremos
-			while (L.get(i) < pivote) {
-				i++;
+				//teniendo ya los valores de los punteros puestos en elementos que no estan en su sitio, los intercambiamos
+				//a no ser que se hayan cruzado, lo cual significaria que ya estan los menores de la lista a la izq, y los mayores a la der
+				if (i <= d) {
+					int valor = L.get(i);
+					L.set(i, L.get(d));
+					L.set(d, valor);
+					i++;
+					d--;
+				}
 			}
-			//El siguiente while compara si el elemento de la der es mayor al pivote
-			//Si lo es, se mueve el puntero un valor a la izq
-			//y vuelve a iterar, hasta encontrar un elemento menor o igual que el pivote, el cual intercambiaremos
-			while (L.get(d) > pivote) {
-				d--;
-			}
-
-			//teniendo ya los valores de los punteros puestos en elementos que no estan en su sitio, los intercambiamos
-			//a no ser que se hayan cruzado, lo cual significaria que ya estan los menores de la lista a la izq, y los mayores a la der
-			if (i <= d) {
-				int valor = L.get(i);
-				L.set(i, L.get(d));
-				L.set(d, valor);
-				i++;
-				d--;
+			//Cuando ya se han cruzado los punteros, llamamos al metodo para ordenarlo, pero en un tramo mas pequeño
+			if (izq < d) {
+				quicksort(L, izq, d);
+			} else if (i < der) {
+				quicksort(L, i, der);
 			}
 		}
-		//Cuando ya se han cruzado los punteros, llamamos al metodo para ordenarlo, pero en un tramo mas pequeño
-		if (izq < d) {
-			quicksort(L, izq, d);
-		} else if (i < der) {
-			quicksort(L, i, der);
-		}
-	}
 	}
 
 	//cojo un elemento como pivote(cualquiera) -> muchas veces se pone el central.
