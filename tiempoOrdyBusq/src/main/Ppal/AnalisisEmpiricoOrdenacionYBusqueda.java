@@ -3,6 +3,7 @@ package Ppal;
 import Modelo.Analizador;
 import java.util.Random;
 import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.ArrayList;
 import java.util.stream.*;
 import java.io.*;
@@ -12,6 +13,7 @@ import java.util.Arrays;
  * @author Paloma Centenera
  */
 public class AnalisisEmpiricoOrdenacionYBusqueda {
+	public static final long LONG_MAX = 2147483647;
 
 	/**
 	 * Análisis empírico de los algoritmos de ordenación y búsqueda.
@@ -95,12 +97,12 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 		};
 
 		Function<long[], long[]> seleccionDirecta = x -> {
-			int menor = 0;
+			long menor = 0;
 			for (int i = 0; i < x.length; i++) {
 				for (int j = x.length - 1; j >= i; j--) {
 					if (x[j] < menor) {
-						menor = x.get(j);
-						x[j] = INT_MAX;
+						menor = x[j];
+						x[j] = LONG_MAX;
 						//x.set(j, INT_MAX);
 					} else if (j == x.length - 1) {
 						x[j] = menor;
@@ -112,7 +114,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 		};
 
 		Function<long[], long[]> inserccionDirecta = x -> {
-			int carta = 0;
+			long carta = 0;
 			int j = 0;
 			for (int i = 1; i < x.length; i++) {
 				carta = x[i];
@@ -131,10 +133,10 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 		BiFunction<long[], Long, Long> busquedaLineal = (x, y) -> {
 			for (int i = 0; i < x.length; i++) {
 				if (x[i] == y) {
-					return i;
+					return (long)i;
 				}
 			}
-			return -INT_MAX;
+			return -LONG_MAX;
 		};
 
 		BiFunction<long[], Long, Long> busquedaBinaria = (x, y) -> {
@@ -148,10 +150,10 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 				} else if (x[mid] > y) {
 					der = mid - 1;
 				} else if (x[mid] == y) {
-					return mid;
+					return (long)mid;
 				}
 			}
-			return -INT_MAX;
+			return -LONG_MAX;
 		};
 		Function<long[], long[]>  MergeSort = L->
 			mergesort(L,0,L.length-1);
