@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Principal {
-	public static final int INT_MAX = 2147483647;
 
+	public static final int INT_MAX = 2147483647;
 	public static void main(String[] args) {
 
 		/* INFORMACIÓN DE COMO VA CADA METODO
@@ -54,7 +54,7 @@ public class Principal {
 			System.out.println("-------------------------------------");
 		};
 
-		//Algoritmo de ordenación burbuja
+		//Algoritmo de ordenación burbuja o bubbleSort
 		Function<List<Integer>, List<Integer>> burbuja = x -> {
 			for (int i = 1; i < x.size(); i++) {
 				for (int j = x.size() - 1; j >= i; j--) {

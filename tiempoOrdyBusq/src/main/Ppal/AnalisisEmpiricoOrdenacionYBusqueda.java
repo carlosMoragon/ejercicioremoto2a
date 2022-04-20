@@ -183,7 +183,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 		PrintWriter out;
 
 		out= new PrintWriter(fichero);
-
+		long posicion;
 		long[] resultado;
 		for (int i=0;i<5;i++){
 			out.print(tam+"\t");
@@ -203,7 +203,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			//              System.out.println("ordenado: "+Arrays.toString(resultado));
 			out.println();
 
-			System.out.println("QuickSort");
+			/*System.out.println("QuickSort");
 			resultado=Analizador.analiza(JuegoPruebasAleatorio[i],QuickSort,out);
 			//             System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
 			//             System.out.println("ordenado: "+Arrays.toString(resultado));
@@ -215,7 +215,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			resultado=Analizador.analiza(JuegoPruebasInverso[i],QuickSort,out);
 			//            System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
 			//            System.out.println("ordenado: "+Arrays.toString(resultado));
-			out.println();
+			out.println();*/
 
 			System.out.println("MergeSort");
 			resultado=Analizador.analiza(JuegoPruebasAleatorio[i],MergeSort,out);
@@ -230,6 +230,65 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			//           System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
 			//           System.out.println("ordenado: "+Arrays.toString(resultado));
 			out.println();
+
+			System.out.println("Seleccion directa");
+			resultado=Analizador.analiza(JuegoPruebasAleatorio[i],seleccionDirecta,out);
+			//            System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
+                        //            System.out.println("ordenado: "+Arrays.toString(resultado));
+
+			resultado=Analizador.analiza(JuegoPruebasOrdenado[i],seleccionDirecta,out);
+			//            System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
+                        //            System.out.println("ordenado: "+Arrays.toString(resultado));
+
+			resultado=Analizador.analiza(JuegoPruebasInverso[i],seleccionDirecta,out);
+			//            System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
+                        //            System.out.println("ordenado: "+Arrays.toString(resultado));
+			out.println();
+
+
+			System.out.println("Insercción directa");
+			resultado=Analizador.analiza(JuegoPruebasAleatorio[i],inserccionDirecta,out);
+                        //            System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
+                        //            System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        resultado=Analizador.analiza(JuegoPruebasOrdenado[i],inserccionDirecta,out);
+                        //           System.out.println("ya ordenado: "+Arrays.toString(JuegoPruebasOrdenado[i]));
+                        //           System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        resultado=Analizador.analiza(JuegoPruebasInverso[i],inserccionDirecta,out);
+                        //           System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
+                        //           System.out.println("ordenado: "+Arrays.toString(resultado));
+                        out.println();
+ 			
+			System.out.println("QuickSort");
+                        resultado=Analizador.analiza(JuegoPruebasAleatorio[i],QuickSort,out);
+                        //             System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
+                        //             System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        resultado=Analizador.analiza(JuegoPruebasOrdenado[i],QuickSort,out);
+                        //             System.out.println("ya ordenado: "+Arrays.toString(JuegoPruebasOrdenado[i]));
+                        //             System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        resultado=Analizador.analiza(JuegoPruebasInverso[i],QuickSort,out);
+                        //            System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
+                        //            System.out.println("ordenado: "+Arrays.toString(resultado));
+                        out.println();
+
+			
+ 			System.out.println("Busqueda Lineal");
+                        posicion=Analizador.analizaBusqueda(JuegoPruebasAleatorio[i],random.nextLong(),busquedaLineal,out);
+                        //             System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
+                        //             System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        posicion=Analizador.analizaBusqueda(JuegoPruebasOrdenado[i],random.nextLong(),busquedaLineal,out);
+                        //             System.out.println("ya ordenado: "+Arrays.toString(JuegoPruebasOrdenado[i]));
+                        //             System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        posicion=Analizador.analizaBusqueda(JuegoPruebasInverso[i],random.nextLong(),busquedaLineal,out);
+                        //            System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
+                        //            System.out.println("ordenado: "+Arrays.toString(resultado));
+                        out.println();
+
 			tam*=10;
 		}
 		out.close();
