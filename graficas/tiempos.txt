@@ -26,4 +26,44 @@
 5818801800	5504464100	5846967000	
 2769495000	2710739100	2694775700	
 1121452400	138700	2446415100	
-1555000	451700	447400	
+1555000	451700	447400
+
+
+
+Orden:
+
+tamaño: 10
+Burbuja
+MergeSort
+Seleccion directa
+Insercción directa
+QuickSort
+Busqueda Lineal
+tamaño: 100
+Burbuja
+MergeSort
+Seleccion directa
+Insercción directa
+QuickSort
+Busqueda Lineal
+tamaño: 1000
+Burbuja
+MergeSort
+Seleccion directa
+Insercción directa
+QuickSort
+Busqueda Lineal
+tamaño: 10000
+Burbuja
+MergeSort
+Seleccion directa
+Insercción directa
+QuickSort
+Busqueda Lineal
+tamaño: 100000
+Burbuja
+MergeSort
+Seleccion directa
+Insercción directa
+Busqueda Lineal
+Fin
