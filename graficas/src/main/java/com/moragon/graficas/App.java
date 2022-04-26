@@ -15,15 +15,15 @@ public class App {
     public static void main(String[] args) throws Exception {
         DefaultXYDataset dataset = new DefaultXYDataset();
 	//Una serie por cada metodo de ordenacion
-	
 
-        dataset.addSeries("burbuja", new double[][] {{ 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 }, { 25, 29.1, 32.1, 32.9, 31.9, 25.5, 20.1, 18.4, 15.3, 11.4, 9.5 }});
-        dataset.addSeries("Seleccion Directa", new double[][] {{ 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 }, { 25, 29.1, 32.1, 32.9, 31.9, 25.5, 20.1, 18.4, 15.3, 11.4, 9.5 }});
-        dataset.addSeries("Insercion Directa", new double[][] {{ 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 }, { 25, 29.1, 32.1, 32.9, 31.9, 25.5, 20.1, 18.4, 15.3, 11.4, 9.5 }});
-        dataset.addSeries("busqueda Lineal", new double[][] {{ 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 }, { 25, 29.1, 32.1, 32.9, 31.9, 25.5, 20.1, 18.4, 15.3, 11.4, 9.5 }});
-        dataset.addSeries("Busqueda Binaria", new double[][] {{ 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 }, { 25, 29.1, 32.1, 32.9, 31.9, 25.5, 20.1, 18.4, 15.3, 11.4, 9.5 }});
-        dataset.addSeries("MergeSort", new double[][] {{ 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 }, { 25, 29.1, 32.1, 32.9, 31.9, 25.5, 20.1, 18.4, 15.3, 11.4, 9.5 }});
-        dataset.addSeries("QuickSort", new double[][] {{ 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 }, { 25, 29.1, 32.1, 32.9, 31.9, 25.5, 20.1, 18.4, 15.3, 11.4, 9.5 }});
+
+        dataset.addSeries("burbuja", new double[][] {{10, 100, 1000, 10000, 100000}, { 5100,341800,2908900,37671000,3818753100.00}});
+        dataset.addSeries("MergeSort", new double[][] {{ 10, 100, 1000, 10000, 100000}, {8900,166700,1350100,136244000,5846967000.00}});
+        dataset.addSeries("Seleccion Directa", new double[][] {{ 10, 100, 1000, 10000, 100000 }, {4200,244300,8973200,40758100,2694775700.00}});
+        dataset.addSeries("Insercion Directa", new double[][] {{ 10, 100, 1000, 10000, 100000 }, {4000,245200,4040300,35845300,2446415100.00}});
+        dataset.addSeries("QuickSort", new double[][] {{10, 100, 1000, 10000 }, {4800,294300,5016100,29275300,0}});
+        //dataset.addSeries("busqueda Lineal", new double[][] {{10, 100, 1000, 10000, 100000 }, {82200,16600,146000,417600,1555000}});
+        //dataset.addSeries("Busqueda Binaria", new double[][] {{ 10, 100, 1000, 10000, 100000 }, {}});
 
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesPaint(0, Color.ORANGE);
@@ -32,9 +32,9 @@ public class App {
         renderer.setSeriesStroke(0, new BasicStroke(2));
         renderer.setSeriesStroke(1, new BasicStroke(2));
         renderer.setSeriesStroke(2, new BasicStroke(2));
-        JFreeChart chart = ChartFactory.createXYLineChart("Browser Quota", "Year", "Quota", dataset);
-        chart.getXYPlot().getRangeAxis().setRange(0, 100);
-        ((NumberAxis) chart.getXYPlot().getRangeAxis()).setNumberFormatOverride(new DecimalFormat("#'%'"));
+        JFreeChart chart = ChartFactory.createXYLineChart("Pruebas Inverso", "Tamaño", "Tiempo", dataset);
+        //chart.getXYPlot().getRangeAxis().setRange(100000, 0006000000.00);
+        //((NumberAxis) chart.getXYPlot().getRangeAxis()).setNumberFormatOverride(new DecimalFormat(""));
         chart.getXYPlot().setRenderer(renderer);
         BufferedImage image = chart.createBufferedImage(600, 400);
         ImageIO.write(image, "png", new File("xy-chart.png"));

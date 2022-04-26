@@ -155,6 +155,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			}
 			return -LONG_MAX;
 		};
+
 		Function<long[], long[]>  MergeSort = L->
 			mergesort(L,0,L.length-1);
 
@@ -190,7 +191,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			System.out.println("tamaño: "+tam);
 			System.out.println("Burbuja");
 
-			resultado=Analizador.analiza(JuegoPruebasAleatorio[i],BubbleSort,out);
+		/*	resultado=Analizador.analiza(JuegoPruebasAleatorio[i],BubbleSort,out);
 			//               System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
 			//               System.out.println("ordenado: "+Arrays.toString(resultado));
 
@@ -217,7 +218,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			//            System.out.println("ordenado: "+Arrays.toString(resultado));
 			out.println();*/
 
-			System.out.println("MergeSort");
+		/*	System.out.println("MergeSort");
 			resultado=Analizador.analiza(JuegoPruebasAleatorio[i],MergeSort,out);
 			//            System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
 			//            System.out.println("ordenado: "+Arrays.toString(resultado));
@@ -288,6 +289,20 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			//            System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
 			//            System.out.println("ordenado: "+Arrays.toString(resultado));
 			out.println();
+ 		*/	
+			System.out.println("Busqueda Binaria");
+                        posicion=Analizador.analizaBusqueda(JuegoPruebasAleatorio[i],random.nextLong(),busquedaBinaria,out);
+                        //             System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
+                        //             System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        posicion=Analizador.analizaBusqueda(JuegoPruebasOrdenado[i],random.nextLong(),busquedaBinaria,out);
+                        //             System.out.println("ya ordenado: "+Arrays.toString(JuegoPruebasOrdenado[i]));
+                        //             System.out.println("ordenado: "+Arrays.toString(resultado));
+
+                        posicion=Analizador.analizaBusqueda(JuegoPruebasInverso[i],random.nextLong(),busquedaBinaria,out);
+                        //            System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
+                        //            System.out.println("ordenado: "+Arrays.toString(resultado));
+                        out.println();
 
 			tam*=10;
 		}
