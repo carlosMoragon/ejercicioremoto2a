@@ -144,7 +144,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			int der = x.length - 1;
 			int mid = 0;
 			while (izq <= der) {
-				mid = (der - izq) / 2;
+				mid = (der + izq) / 2;
 				if (x[mid] < y) {
 					izq = mid + 1;
 				} else if (x[mid] > y) {
@@ -189,9 +189,9 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 		for (int i=0;i<5;i++){
 			out.print(tam+"\t");
 			System.out.println("tamaño: "+tam);
-			System.out.println("Burbuja");
+		/*	System.out.println("Burbuja");
 
-		/*	resultado=Analizador.analiza(JuegoPruebasAleatorio[i],BubbleSort,out);
+			resultado=Analizador.analiza(JuegoPruebasAleatorio[i],BubbleSort,out);
 			//               System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
 			//               System.out.println("ordenado: "+Arrays.toString(resultado));
 
@@ -275,7 +275,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 				//            System.out.println("ordenado: "+Arrays.toString(resultado));
 				out.println();
 			}
-
+		*/
 			System.out.println("Busqueda Lineal");
 			posicion=Analizador.analizaBusqueda(JuegoPruebasAleatorio[i],random.nextLong(),busquedaLineal,out);
 			//             System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
@@ -289,7 +289,7 @@ public class AnalisisEmpiricoOrdenacionYBusqueda {
 			//            System.out.println("inverso: "+Arrays.toString(JuegoPruebasInverso[i]));
 			//            System.out.println("ordenado: "+Arrays.toString(resultado));
 			out.println();
- 		*/	
+ 			
 			System.out.println("Busqueda Binaria");
                         posicion=Analizador.analizaBusqueda(JuegoPruebasAleatorio[i],random.nextLong(),busquedaBinaria,out);
                         //             System.out.println("aleatorio: "+Arrays.toString(JuegoPruebasAleatorio[i]));
