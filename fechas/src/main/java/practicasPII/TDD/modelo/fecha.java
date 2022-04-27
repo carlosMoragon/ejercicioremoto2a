@@ -20,10 +20,22 @@ public class fecha {
 		return new fecha(dia_+1,mes_, anio_);
 	}
 	public fecha mannanaUltimoDiaTest(){
-		return new fecha(dia_+1,mes_,anio_);
+		return maniana();
 	}
-	public fecha ultimoDiaTest(){
-		return new fecha(dia_+1,mes_,anio_);
+	public fecha mannanaUltimoDiaAnnoTest(){
+		return maniana();
+	}
+	public fecha annoBisiestoTest(){
+		return maniana();
+	}
+	public boolean annoBisiesto(fecha hoy){
+		if(hoy.anio() % 4 == 0 && hoy.anio() % 100 != 0 ){
+			return true;
+		}else if(hoy.anio() % 400 == 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

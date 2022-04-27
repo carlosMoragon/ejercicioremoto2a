@@ -16,10 +16,10 @@ public class App {
     public static void main(String[] args) throws Exception {
         DefaultXYDataset dataset = new DefaultXYDataset();
         //Una serie por cada metodo de ordenacion
-        dataset.addSeries("burbuja", new double[][]{{10, 100, 1000, 10000, 100000}, {5100, 341800, 2908900, 37671000, 3818753100.00}});
-        dataset.addSeries("MergeSort", new double[][]{{10, 100, 1000, 10000, 100000}, {8900, 166700, 1350100, 136244000, 5846967000.00}});
-        dataset.addSeries("Seleccion Directa", new double[][]{{10, 100, 1000, 10000, 100000}, {4200, 244300, 8973200, 40758100, 2694775700.00}});
-        dataset.addSeries("Insercion Directa", new double[][]{{10, 100, 1000, 10000, 100000}, {4000, 245200, 4040300, 35845300, 2446415100.00}});
+        dataset.addSeries("burbuja", new double[][]{{10, 100, 1000, 10000, 100000}, {5100, 341800, 2908900, 37671000/*, 3818753100.00*/}});
+        dataset.addSeries("MergeSort", new double[][]{{10, 100, 1000, 10000, 100000}, {8900, 166700, 1350100, 136244000/*, 5846967000.00*/}});
+        dataset.addSeries("Seleccion Directa", new double[][]{{10, 100, 1000, 10000, 100000}, {4200, 244300, 8973200, 40758100/*, 2694775700.00*/}});
+        dataset.addSeries("Insercion Directa", new double[][]{{10, 100, 1000, 10000, 100000}, {4000, 245200, 4040300, 35845300/*, 2446415100.00*/}});
         dataset.addSeries("QuickSort", new double[][]{{10, 100, 1000, 10000}, {4800, 294300, 5016100, 29275300}});
         //dataset.addSeries("busqueda Lineal", new double[][] {{10, 100, 1000, 10000, 100000 }, {82200,16600,146000,417600,1555000}});
         //dataset.addSeries("Busqueda Binaria", new double[][] {{ 10, 100, 1000, 10000,
