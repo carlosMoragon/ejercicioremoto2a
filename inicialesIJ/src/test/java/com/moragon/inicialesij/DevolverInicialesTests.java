@@ -36,10 +36,14 @@ public class DevolverInicialesTests {
     public void pruebaSinApellido(){
         assertTrue(DevolverIniciales.devolverIniciales("Carlos,").equals(""));
     }
-   /* @Test
-    public void pruebaNoString(){
+   @Test
+    public void pruebaNoString1(){
         assertTrue(DevolverIniciales.devolverIniciales("32€, Moragon").equals(""));
-    }*/
+    }
+    @Test
+    public void pruebaNoString2(){
+        assertTrue(DevolverIniciales.devolverIniciales("Carlos, 253?´ñ").equals(""));
+    }
     @Test
     public void pruebaCompleja(){
         assertTrue(DevolverIniciales.devolverIniciales("     Juan Carlos Jose Santos   , Moragon     Corella Sahuquillo Hurtado").equals("J.C.J.S.M.C.S.H"));
