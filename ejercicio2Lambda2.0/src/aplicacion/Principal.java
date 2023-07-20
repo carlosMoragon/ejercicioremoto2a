@@ -61,4 +61,6 @@ public class Principal{
 	public static void mediaFunction(List<Integer> lista, Function<List<Integer>, Double> f, Consumer<Object> print){
 		print.accept(f.apply(lista));
 	}
+
+
 }

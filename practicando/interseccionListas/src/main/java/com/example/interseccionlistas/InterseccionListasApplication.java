@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InterseccionListasApplication<E> {
+public class InterseccionListasApplication{
     public static void main(String[] args) {
         System.out.println(montecarloDonnutLambda(100000));
         System.out.println(montecarloDonnutRecursivo(5000, 0));
@@ -20,10 +20,6 @@ public class InterseccionListasApplication<E> {
                 if(e == i) resultado.add( e);
             }
         }
-        /*
-        //Implementacion de juan cordero
-        for(int e: lista1) if(lista2.contains(e)) resultado.add(e);
-         */
         return resultado;
     }
     static List<Integer> solucion = new ArrayList<>();
@@ -72,4 +68,18 @@ public class InterseccionListasApplication<E> {
         }
         return dentro;
     }
+
+    public static babilonicoRecursivo(double numero, double errorMaximo){
+        BaseAltura.base = numero/2;
+        BaseAltura.altura = 2;
+        Stream.generate(() -> siguienteBase(numero)).filter(base -> base != errorMaximo).findfirst().orElse(0.0);
+
+        if(bsae != errorMaximo){
+
+        }else{
+            return 0.0;
+        }
+    }
 }
+
+
